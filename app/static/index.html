@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EICMA Network — Exhibitor Ecosystem</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0b;--surface:#141416;--surface2:#1c1c1f;--border:#2a2a2e;
+  --text:#e4e4e7;--text2:#a1a1aa;--text3:#71717a;
+  --accent:#f97316;--accent2:#fb923c;
+}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);overflow:hidden;height:100vh;width:100vw}
+a{color:var(--accent)}
+
+/* Layout */
+.app{display:flex;height:100vh;width:100vw}
+.sidebar-left{width:280px;min-width:280px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:10}
+.sidebar-right{width:300px;min-width:0;background:var(--surface);border-left:1px solid var(--border);display:flex;flex-direction:column;z-index:10;transition:width .3s,min-width .3s}
+.sidebar-right.collapsed{width:0;min-width:0;overflow:hidden;border-left:none}
+.graph-area{flex:1;position:relative;overflow:hidden}
+
+/* Sidebar sections */
+.sidebar-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.sidebar-header h2{font-size:14px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text2)}
+.sidebar-header .badge{background:var(--accent);color:#000;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px}
+.sidebar-section{padding:16px 20px;border-bottom:1px solid var(--border)}
+.sidebar-section h3{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:10px}
+.sidebar-scroll{flex:1;overflow-y:auto}
+.sidebar-scroll::-webkit-scrollbar{width:4px}
+.sidebar-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+
+/* Form controls */
+label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--text2);margin-bottom:12px}
+label:last-child{margin-bottom:0}
+select,input[type=range]{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:6px 10px;font-size:13px;font-family:inherit}
+select:focus,input:focus{outline:none;border-color:var(--accent)}
+input[type=range]{padding:0;height:4px;-webkit-appearance:none;border:none;border-radius:2px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--accent);cursor:pointer}
+.range-row{display:flex;align-items:center;gap:8px}
+.range-row input{flex:1}
+.range-val{font-size:13px;font-weight:600;color:var(--accent);min-width:20px;text-align:right}
+.cb-row{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text);cursor:pointer;margin-bottom:8px}
+.cb-row input{accent-color:var(--accent)}
+.btn{background:var(--surface2);border:1px solid var(--border);color:var(--text2);padding:6px 14px;border-radius:6px;font-size:12px;font-family:inherit;cursor:pointer;transition:all .15s}
+.btn:hover{background:var(--border);color:var(--text)}
+.btn-accent{background:var(--accent);color:#000;border-color:var(--accent);font-weight:600}
+.btn-accent:hover{background:var(--accent2)}
+
+/* Legend */
+.legend{display:flex;flex-wrap:wrap;gap:6px}
+.legend-item{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--text2)}
+.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* Stats panel */
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:13px}
+.stat-row .label{color:var(--text2)}
+.stat-row .value{color:var(--text);font-weight:600;font-variant-numeric:tabular-nums}
+.stat-big{font-size:24px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.top-list{list-style:none}
+.top-list li{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:12px;border-bottom:1px solid var(--border)}
+.top-list li:last-child{border:none}
+.top-rank{color:var(--text3);font-weight:700;min-width:16px;font-size:11px}
+.top-name{flex:1;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top-score{color:var(--accent);font-weight:600;font-size:11px;font-variant-numeric:tabular-nums}
+.comm-bar{display:flex;align-items:center;gap:8px;margin-bottom:4px;font-size:12px}
+.comm-bar-fill{height:8px;border-radius:4px;transition:width .3s}
+.comm-bar-label{color:var(--text2);min-width:55px}
+.comm-bar-val{color:var(--text);font-weight:600;min-width:30px;text-align:right}
+
+/* Toggle button for right sidebar */
+.toggle-right{position:absolute;top:12px;right:12px;z-index:20}
+
+/* Tooltip */
+.tooltip{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-size:12px;max-width:320px;z-index:100;box-shadow:0 8px 32px rgba(0,0,0,.6);opacity:0;transition:opacity .15s}
+.tooltip.visible{opacity:1}
+.tooltip h4{font-size:14px;font-weight:700;margin-bottom:6px;color:var(--text);line-height:1.3}
+.tooltip-row{display:flex;gap:8px;margin-bottom:3px}
+.tooltip-key{color:var(--text3);min-width:70px}
+.tooltip-val{color:var(--text)}
+.tooltip-editions{display:flex;gap:4px;margin-top:6px}
+.tooltip-editions span{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:11px;font-weight:600}
+.tooltip-editions span.active{background:var(--accent);color:#000;border-color:var(--accent)}
+
+/* Loading */
+.loading-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg);z-index:50}
+.loading-overlay .spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{color:var(--text2);margin-top:16px;font-size:13px}
+
+/* Canvas */
+canvas{display:block}
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- LEFT SIDEBAR -->
+  <div class="sidebar-left">
+    <div class="sidebar-header">
+      <h2>EICMA Network</h2>
+      <span class="badge" id="badge-year">2022–2025</span>
+    </div>
+    <div class="sidebar-scroll">
+      <div class="sidebar-section">
+        <h3>Coloring</h3>
+        <label>
+          Color by
+          <select id="sel-color">
+            <option value="community" selected>Community</option>
+            <option value="paese">Country</option>
+            <option value="brand_type">Brand Type</option>
+            <option value="longevity">Longevity</option>
+          </select>
+        </label>
+      </div>
+      <div class="sidebar-section">
+        <h3>Filters</h3>
+        <label>
+          Min connections
+          <div class="range-row">
+            <input type="range" id="sl-degree" min="0" max="50" value="0">
+            <span class="range-val" id="val-degree">0</span>
+          </div>
+        </label>
+        <div class="cb-row" id="cb-italian">
+          <input type="checkbox" id="chk-italian"><span>Only Italian exhibitors</span>
+        </div>
+        <div class="cb-row" id="cb-multi">
+          <input type="checkbox" id="chk-multi"><span>Only multi-edition (2+)</span>
+        </div>
+        <div class="cb-row" id="cb-ancma">
+          <input type="checkbox" id="chk-ancma"><span>Solo associati ANCMA</span>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button class="btn btn-accent" id="btn-apply">Apply</button>
+          <button class="btn" id="btn-reset">Reset</button>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <h3>Legend</h3>
+        <div class="legend" id="legend"></div>
+      </div>
+      <div class="sidebar-section">
+        <h3>Visible</h3>
+        <div class="stat-row"><span class="label">Nodes</span><span class="value" id="vis-nodes">–</span></div>
+        <div class="stat-row"><span class="label">Edges</span><span class="value" id="vis-edges">–</span></div>
+      </div>
+      <div class="sidebar-section">
+        <h3>Edge Layers</h3>
+        <div class="cb-row"><input type="checkbox" id="chk-layer-brand" checked><span style="color:#f97316">Brand links</span></div>
+        <div class="cb-row"><input type="checkbox" id="chk-layer-stand" checked><span style="color:#38bdf8">Same stand</span></div>
+        <div class="cb-row"><input type="checkbox" id="chk-layer-copresence" checked><span style="color:#a78bfa">Co-presence</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRAPH AREA -->
+  <div class="graph-area" id="graph-area">
+    <div class="loading-overlay" id="loading">
+      <div style="text-align:center">
+        <div class="spinner"></div>
+        <div class="loading-text">Building network…</div>
+      </div>
+    </div>
+    <canvas id="canvas"></canvas>
+    <div class="tooltip" id="tooltip"></div>
+    <button class="btn toggle-right" id="btn-toggle-right">Stats ▸</button>
+  </div>
+
+  <!-- RIGHT SIDEBAR -->
+  <div class="sidebar-right" id="sidebar-right">
+    <div class="sidebar-header">
+      <h2>Statistics</h2>
+    </div>
+    <div class="sidebar-scroll">
+      <div class="sidebar-section">
+        <h3>Graph Overview</h3>
+        <div class="stat-row"><span class="label">Total nodes</span><span class="value stat-big" id="st-nodes">–</span></div>
+        <div class="stat-row"><span class="label">Total edges</span><span class="value" id="st-edges">–</span></div>
+        <div class="stat-row"><span class="label">Density</span><span class="value" id="st-density">–</span></div>
+        <div class="stat-row"><span class="label">Components</span><span class="value" id="st-components">–</span></div>
+      </div>
+      <div class="sidebar-section">
+        <h3>Top 10 Brokers (Betweenness)</h3>
+        <ol class="top-list" id="top-betweenness"></ol>
+      </div>
+      <div class="sidebar-section">
+        <h3>Top Communities</h3>
+        <div id="top-communities"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+(function(){
+"use strict";
+
+// ── Palette ──
+const COMMUNITY_COLORS = [
+  "#f97316","#38bdf8","#a78bfa","#34d399","#fb7185",
+  "#facc15","#f472b6","#22d3ee","#a3e635","#e879f9",
+  "#6ee7b7","#fda4af","#93c5fd","#fde68a","#c4b5fd",
+  "#86efac","#f9a8d4","#67e8f9","#bef264","#d8b4fe"
+];
+const COUNTRY_COLORS = {
+  "ITALY":"#34d399","CHINA":"#fb7185","TAIWAN, CHINA":"#facc15",
+  "FRANCE":"#38bdf8","GERMANY":"#a78bfa","SPAIN":"#f97316",
+  "UNITED KINGDOM":"#22d3ee","PAKISTAN":"#f472b6",
+  "JAPAN":"#e879f9","UNITED STATES":"#6ee7b7",
+  "NETHERLANDS":"#fda4af","SOUTH KOREA":"#93c5fd",
+  "TURKEY":"#fde68a","INDIA":"#c4b5fd","VIETNAM":"#86efac"
+};
+const BRAND_COLORS = {0:"#52525b",1:"#f97316",2:"#38bdf8",3:"#a78bfa"};
+const BRAND_LABELS = {0:"Unknown",1:"Direct",2:"Represented",3:"Brand"};
+const LONGEVITY_COLORS = {1:"#3f3f46",2:"#a78bfa",3:"#38bdf8",4:"#f97316"};
+const EDGE_LAYER_COLORS = {"brand_type":"#f97316","same_stand":"#38bdf8","copresence":"#a78bfa"};
+
+// ── State ──
+let allNodes = [], allLinks = [];
+let visNodes = [], visLinks = [];
+let simulation = null;
+let colorMode = "community";
+let selectedNode = null;
+let hoveredNode = null;
+let transform = d3.zoomIdentity;
+let stats = null;
+const pinnedNodes = new Set();
+
+// ── Canvas setup ──
+const canvasEl = document.getElementById("canvas");
+const ctx = canvasEl.getContext("2d");
+const graphArea = document.getElementById("graph-area");
+
+function resizeCanvas(){
+  const r = graphArea.getBoundingClientRect();
+  canvasEl.width = r.width * devicePixelRatio;
+  canvasEl.height = r.height * devicePixelRatio;
+  canvasEl.style.width = r.width + "px";
+  canvasEl.style.height = r.height + "px";
+  ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+}
+resizeCanvas();
+window.addEventListener("resize", ()=>{ resizeCanvas(); draw(); });
+
+// ── Data loading ──
+async function loadData(){
+  const [graphRes, statsRes] = await Promise.all([
+    fetch("/graph"), fetch("/stats")
+  ]);
+  const graphData = await graphRes.json();
+  stats = await statsRes.json();
+
+  allNodes = graphData.nodes.map(n => ({
+    ...n,
+    x: Math.random() * canvasEl.clientWidth,
+    y: Math.random() * canvasEl.clientHeight,
+    vx: 0, vy: 0,
+    radius: Math.max(4, Math.min(20, 4 + n.degree_centrality * 3000)),
+  }));
+  const nodeMap = new Map(allNodes.map(n => [n.id, n]));
+  allLinks = graphData.links.map(l => ({
+    ...l,
+    source: nodeMap.get(l.source),
+    target: nodeMap.get(l.target),
+  })).filter(l => l.source && l.target);
+
+  // Build adjacency for degree counts
+  allNodes.forEach(n => { n._degree = 0; });
+  allLinks.forEach(l => { l.source._degree++; l.target._degree++; });
+
+  applyFilters();
+  renderStats();
+  document.getElementById("loading").style.display = "none";
+}
+
+// ── Filtering ──
+function applyFilters(){
+  const minDeg = +document.getElementById("sl-degree").value;
+  const onlyItalian = document.getElementById("chk-italian").checked;
+  const onlyMulti = document.getElementById("chk-multi").checked;
+  const onlyAncma = document.getElementById("chk-ancma").checked;
+  const showBrand = document.getElementById("chk-layer-brand").checked;
+  const showStand = document.getElementById("chk-layer-stand").checked;
+  const showCopresence = document.getElementById("chk-layer-copresence").checked;
+
+  // Filter links by layer first
+  let filteredLinks = allLinks.filter(l => {
+    const layers = l.layers || [];
+    if (layers.includes("brand_type") && showBrand) return true;
+    if (layers.includes("same_stand") && showStand) return true;
+    if (layers.includes("copresence") && showCopresence) return true;
+    return false;
+  });
+
+  // Compute degree on filtered links
+  const degMap = new Map();
+  filteredLinks.forEach(l => {
+    degMap.set(l.source.id, (degMap.get(l.source.id)||0)+1);
+    degMap.set(l.target.id, (degMap.get(l.target.id)||0)+1);
+  });
+
+  const nodeSet = new Set();
+  visNodes = allNodes.filter(n => {
+    if (minDeg > 0 && (degMap.get(n.id)||0) < minDeg) return false;
+    if (onlyItalian && !n.is_italian) return false;
+    if (onlyMulti && n.longevity_score < 2) return false;
+    if (onlyAncma && !n.is_ancma_member) return false;
+    nodeSet.add(n.id);
+    return true;
+  });
+  visLinks = filteredLinks.filter(l => nodeSet.has(l.source.id) && nodeSet.has(l.target.id));
+
+  document.getElementById("vis-nodes").textContent = visNodes.length.toLocaleString();
+  document.getElementById("vis-edges").textContent = visLinks.length.toLocaleString();
+
+  updateLegend();
+  startSimulation();
+}
+
+// ── Simulation ──
+function startSimulation(){
+  if (simulation) simulation.stop();
+
+  const W = canvasEl.clientWidth, H = canvasEl.clientHeight;
+  simulation = d3.forceSimulation(visNodes)
+    .force("link", d3.forceLink(visLinks).id(d=>d.id).distance(40).strength(l => l.weight * 0.02))
+    .force("charge", d3.forceManyBody().strength(-30).distanceMax(300))
+    .force("center", d3.forceCenter(W/2, H/2))
+    .force("collide", d3.forceCollide(d => d.radius + 2))
+    .alphaDecay(0.02)
+    .on("tick", draw);
+}
+
+// ── Drawing ──
+function nodeColor(n){
+  if (colorMode === "community") return COMMUNITY_COLORS[n.community % COMMUNITY_COLORS.length];
+  if (colorMode === "paese") return COUNTRY_COLORS[n.paese] || "#52525b";
+  if (colorMode === "brand_type") return BRAND_COLORS[n.brand_type] || "#52525b";
+  if (colorMode === "longevity") return LONGEVITY_COLORS[n.longevity_score] || "#3f3f46";
+  return "#52525b";
+}
+
+function edgeColor(l){
+  const layers = l.layers || [];
+  if (layers.includes("brand_type")) return EDGE_LAYER_COLORS["brand_type"];
+  if (layers.includes("copresence")) return EDGE_LAYER_COLORS["copresence"];
+  return EDGE_LAYER_COLORS["same_stand"];
+}
+
+function draw(){
+  const W = canvasEl.clientWidth, H = canvasEl.clientHeight;
+  ctx.save();
+  ctx.clearRect(0, 0, W, H);
+  ctx.translate(transform.x, transform.y);
+  ctx.scale(transform.k, transform.k);
+
+  const isSelecting = selectedNode !== null;
+  const neighborIds = new Set();
+  if (isSelecting){
+    visLinks.forEach(l => {
+      if (l.source.id === selectedNode.id) neighborIds.add(l.target.id);
+      if (l.target.id === selectedNode.id) neighborIds.add(l.source.id);
+    });
+    neighborIds.add(selectedNode.id);
+  }
+
+  // Draw edges
+  visLinks.forEach(l => {
+    const dim = isSelecting && !neighborIds.has(l.source.id) && !neighborIds.has(l.target.id);
+    ctx.beginPath();
+    ctx.moveTo(l.source.x, l.source.y);
+    ctx.lineTo(l.target.x, l.target.y);
+    ctx.strokeStyle = edgeColor(l);
+    ctx.lineWidth = Math.max(0.3, l.weight * 0.4);
+    ctx.globalAlpha = dim ? 0.03 : (l.weight >= 2 ? 0.5 : 0.15);
+    ctx.stroke();
+  });
+  ctx.globalAlpha = 1;
+
+  // Draw nodes
+  visNodes.forEach(n => {
+    const dim = isSelecting && !neighborIds.has(n.id);
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, n.radius, 0, Math.PI*2);
+    ctx.fillStyle = nodeColor(n);
+    ctx.globalAlpha = dim ? 0.08 : 1;
+    ctx.fill();
+    // ANCMA member ring (drawn before hover ring so hover stays on top)
+    if (n.is_ancma_member && !dim){
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius + 3, 0, Math.PI*2);
+      ctx.strokeStyle = "#facc15";
+      ctx.lineWidth = 1.5;
+      ctx.globalAlpha = 0.85;
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+    if (n === hoveredNode || n === selectedNode){
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius, 0, Math.PI*2);
+      ctx.strokeStyle = "#fff";
+      ctx.lineWidth = 2;
+      ctx.globalAlpha = dim ? 0.08 : 1;
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+    if (pinnedNodes.has(n.id)){
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius, 0, Math.PI*2);
+      ctx.strokeStyle = var_accent;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+  });
+  ctx.globalAlpha = 1;
+
+  // Labels for hovered/selected
+  if (hoveredNode || selectedNode){
+    const n = hoveredNode || selectedNode;
+    const fontSize = Math.max(10, 12 / transform.k);
+    ctx.font = `600 ${fontSize}px Inter,system-ui,sans-serif`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "bottom";
+    ctx.fillStyle = "#fff";
+    ctx.fillText(n.nome.substring(0, 40), n.x, n.y - n.radius - 4);
+  }
+
+  ctx.restore();
+}
+const var_accent = "#f97316";
+
+// ── Zoom ──
+const zoom = d3.zoom()
+  .scaleExtent([0.1, 8])
+  .on("zoom", e => { transform = e.transform; draw(); });
+d3.select(canvasEl).call(zoom);
+
+// ── Hit testing ──
+function findNode(mx, my){
+  const [x, y] = transform.invert([mx, my]);
+  let closest = null, minDist = Infinity;
+  visNodes.forEach(n => {
+    const dx = n.x - x, dy = n.y - y;
+    const d = Math.sqrt(dx*dx + dy*dy);
+    if (d < n.radius + 4 && d < minDist){ minDist = d; closest = n; }
+  });
+  return closest;
+}
+
+// ── Mouse interactions ──
+let dragNode = null, isDragging = false;
+
+canvasEl.addEventListener("mousedown", e => {
+  const rect = canvasEl.getBoundingClientRect();
+  const n = findNode(e.clientX - rect.left, e.clientY - rect.top);
+  if (n){
+    dragNode = n;
+    isDragging = false;
+    d3.select(canvasEl).on(".zoom", null);
+  }
+});
+
+canvasEl.addEventListener("mousemove", e => {
+  const rect = canvasEl.getBoundingClientRect();
+  const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+
+  if (dragNode){
+    isDragging = true;
+    const [x, y] = transform.invert([mx, my]);
+    dragNode.fx = x;
+    dragNode.fy = y;
+    if (simulation) simulation.alpha(0.1).restart();
+    return;
+  }
+
+  const n = findNode(mx, my);
+  if (n !== hoveredNode){
+    hoveredNode = n;
+    canvasEl.style.cursor = n ? "pointer" : "default";
+    showTooltip(n, e.clientX, e.clientY);
+    draw();
+  } else if (n){
+    moveTooltip(e.clientX, e.clientY);
+  }
+});
+
+canvasEl.addEventListener("mouseup", e => {
+  if (dragNode){
+    if (isDragging){
+      pinnedNodes.add(dragNode.id);
+      // keep fx/fy to pin
+    } else {
+      // click
+      const rect = canvasEl.getBoundingClientRect();
+      const n = findNode(e.clientX - rect.left, e.clientY - rect.top);
+      if (n){
+        selectedNode = (selectedNode === n) ? null : n;
+      }
+    }
+    dragNode = null;
+    isDragging = false;
+    d3.select(canvasEl).call(zoom);
+    draw();
+    return;
+  }
+  // click on background
+  if (!isDragging){
+    selectedNode = null;
+    draw();
+  }
+});
+
+canvasEl.addEventListener("dblclick", e => {
+  const rect = canvasEl.getBoundingClientRect();
+  const n = findNode(e.clientX - rect.left, e.clientY - rect.top);
+  if (n && pinnedNodes.has(n.id)){
+    pinnedNodes.delete(n.id);
+    n.fx = null;
+    n.fy = null;
+    if (simulation) simulation.alpha(0.1).restart();
+    draw();
+  }
+});
+
+canvasEl.addEventListener("mouseleave", ()=>{
+  hoveredNode = null;
+  hideTooltip();
+  draw();
+});
+
+// ── Tooltip ──
+const tooltipEl = document.getElementById("tooltip");
+function showTooltip(n, cx, cy){
+  if (!n){ hideTooltip(); return; }
+  const editions = [2022,2023,2024,2025].map(y =>
+    `<span class="${n.edizioni.includes(y)?'active':''}">${y}</span>`
+  ).join("");
+  const ancmaBadge = n.is_ancma_member
+    ? `<span style="background:#facc15;color:#000;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;margin-left:6px;vertical-align:middle">ANCMA</span>`
+    : '';
+  tooltipEl.innerHTML = `
+    <h4>${escHtml(n.nome)}${ancmaBadge}</h4>
+    <div class="tooltip-row"><span class="tooltip-key">Country</span><span class="tooltip-val">${escHtml(n.paese||'–')} ${n.codice_paese?'('+n.codice_paese+')':''}</span></div>
+    <div class="tooltip-row"><span class="tooltip-key">Pavilion</span><span class="tooltip-val">${n.padiglione_2025||'–'}</span></div>
+    <div class="tooltip-row"><span class="tooltip-key">Stand</span><span class="tooltip-val">${n.stand_2025||'–'}</span></div>
+    <div class="tooltip-row"><span class="tooltip-key">Brand type</span><span class="tooltip-val">${BRAND_LABELS[n.brand_type]||'–'}</span></div>
+    <div class="tooltip-row"><span class="tooltip-key">Degree</span><span class="tooltip-val">${(n.degree_centrality*1000).toFixed(1)}</span></div>
+    <div class="tooltip-row"><span class="tooltip-key">Betweenness</span><span class="tooltip-val">${(n.betweenness_centrality*10000).toFixed(2)}</span></div>
+    <div class="tooltip-row"><span class="tooltip-key">Clustering</span><span class="tooltip-val">${n.clustering_coefficient.toFixed(3)}</span></div>
+    <div class="tooltip-editions">${editions}</div>
+  `;
+  moveTooltip(cx, cy);
+  tooltipEl.classList.add("visible");
+}
+function moveTooltip(cx, cy){
+  const tw = tooltipEl.offsetWidth, th = tooltipEl.offsetHeight;
+  const gRect = graphArea.getBoundingClientRect();
+  let x = cx - gRect.left + 16, y = cy - gRect.top - 10;
+  if (x + tw > gRect.width - 10) x = cx - gRect.left - tw - 16;
+  if (y + th > gRect.height - 10) y = gRect.height - th - 10;
+  if (y < 10) y = 10;
+  tooltipEl.style.left = x + "px";
+  tooltipEl.style.top = y + "px";
+}
+function hideTooltip(){ tooltipEl.classList.remove("visible"); }
+function escHtml(s){ const d=document.createElement("div"); d.textContent=s; return d.innerHTML; }
+
+// ── Legend ──
+function updateLegend(){
+  const el = document.getElementById("legend");
+  el.innerHTML = "";
+  if (colorMode === "community"){
+    const comms = new Map();
+    visNodes.forEach(n => comms.set(n.community, (comms.get(n.community)||0)+1));
+    const sorted = [...comms.entries()].sort((a,b)=>b[1]-a[1]).slice(0,12);
+    sorted.forEach(([c,cnt]) => {
+      el.innerHTML += `<div class="legend-item"><div class="legend-dot" style="background:${COMMUNITY_COLORS[c%COMMUNITY_COLORS.length]}"></div>C${c} (${cnt})</div>`;
+    });
+  } else if (colorMode === "paese"){
+    const countries = new Map();
+    visNodes.forEach(n => { const p=n.paese||"Other"; countries.set(p,(countries.get(p)||0)+1); });
+    [...countries.entries()].sort((a,b)=>b[1]-a[1]).slice(0,10).forEach(([p,cnt])=>{
+      el.innerHTML += `<div class="legend-item"><div class="legend-dot" style="background:${COUNTRY_COLORS[p]||'#52525b'}"></div>${p} (${cnt})</div>`;
+    });
+  } else if (colorMode === "brand_type"){
+    [1,2,3,0].forEach(bt=>{
+      const cnt = visNodes.filter(n=>n.brand_type===bt).length;
+      if(cnt) el.innerHTML += `<div class="legend-item"><div class="legend-dot" style="background:${BRAND_COLORS[bt]}"></div>${BRAND_LABELS[bt]} (${cnt})</div>`;
+    });
+  } else if (colorMode === "longevity"){
+    [4,3,2,1].forEach(l=>{
+      const cnt = visNodes.filter(n=>n.longevity_score===l).length;
+      if(cnt) el.innerHTML += `<div class="legend-item"><div class="legend-dot" style="background:${LONGEVITY_COLORS[l]}"></div>${l} ed. (${cnt})</div>`;
+    });
+  }
+}
+
+// ── Stats panel ──
+function renderStats(){
+  if(!stats) return;
+  document.getElementById("st-nodes").textContent = stats.num_nodes.toLocaleString();
+  document.getElementById("st-edges").textContent = stats.num_edges.toLocaleString();
+  document.getElementById("st-density").textContent = stats.density.toFixed(4);
+  document.getElementById("st-components").textContent = stats.num_components;
+
+  const tbEl = document.getElementById("top-betweenness");
+  tbEl.innerHTML = stats.top_betweenness.map((b,i)=>
+    `<li><span class="top-rank">${i+1}</span><span class="top-name" title="${escHtml(b.nome)}">${escHtml(b.nome)}</span><span class="top-score">${(b.score*10000).toFixed(1)}</span></li>`
+  ).join("");
+
+  const tcEl = document.getElementById("top-communities");
+  const maxSize = stats.top_communities[0]?.size || 1;
+  tcEl.innerHTML = stats.top_communities.slice(0,8).map(c=>
+    `<div class="comm-bar"><span class="comm-bar-label">C${c.id}</span><div class="comm-bar-fill" style="width:${c.size/maxSize*100}%;background:${COMMUNITY_COLORS[c.id%COMMUNITY_COLORS.length]}"></div><span class="comm-bar-val">${c.size}</span></div>`
+  ).join("");
+}
+
+// ── Controls ──
+document.getElementById("sel-color").addEventListener("change", e => {
+  colorMode = e.target.value;
+  updateLegend();
+  draw();
+});
+
+document.getElementById("sl-degree").addEventListener("input", e => {
+  document.getElementById("val-degree").textContent = e.target.value;
+});
+
+document.getElementById("btn-apply").addEventListener("click", applyFilters);
+
+document.getElementById("btn-reset").addEventListener("click", ()=>{
+  document.getElementById("sl-degree").value = 0;
+  document.getElementById("val-degree").textContent = "0";
+  document.getElementById("chk-italian").checked = false;
+  document.getElementById("chk-multi").checked = false;
+  document.getElementById("chk-ancma").checked = false;
+  document.getElementById("chk-layer-brand").checked = true;
+  document.getElementById("chk-layer-stand").checked = true;
+  document.getElementById("chk-layer-copresence").checked = true;
+  selectedNode = null;
+  applyFilters();
+});
+
+// Layer checkboxes trigger immediate re-filter
+["chk-layer-brand","chk-layer-stand","chk-layer-copresence"].forEach(id=>{
+  document.getElementById(id).addEventListener("change", applyFilters);
+});
+
+// Right sidebar toggle
+const sidebarRight = document.getElementById("sidebar-right");
+const btnToggle = document.getElementById("btn-toggle-right");
+btnToggle.addEventListener("click", ()=>{
+  sidebarRight.classList.toggle("collapsed");
+  btnToggle.textContent = sidebarRight.classList.contains("collapsed") ? "◂ Stats" : "Stats ▸";
+  setTimeout(()=>{ resizeCanvas(); draw(); }, 320);
+});
+
+// ── Init ──
+loadData();
+
+})();
+</script>
+</body>
+</html>

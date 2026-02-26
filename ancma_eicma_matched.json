@@ -1,0 +1,1288 @@
+[
+  {
+    "nome_ancma": "ACERBIS ITALIA SPA",
+    "nome_eicma": "ACERBIS ITALIA   S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "7",
+    "stand_2025": "G46",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "AIXAM MEGA ITALIA SRL",
+    "nome_eicma": "AIXAM MEGA ITALIA  S.R.L.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2024,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "10",
+    "stand_2025": "I76",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "ALPINESTARS SPA",
+    "nome_eicma": "ALPINESTARS - PARTS EUROPE GMBH",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2024
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "ARROW SPECIAL PARTS SPA",
+    "nome_eicma": "ARROW SPECIAL PARTS S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "10",
+    "stand_2025": "C73",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "B2C INNOVATION SPA",
+    "nome_eicma": "B2C INNOVATION SPA",
+    "match_score": 100,
+    "match_type": "exact",
+    "edizioni_eicma": [
+      2022
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "BETAMOTOR SPA",
+    "nome_eicma": "BETAMOTOR S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2023,
+      2024,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "7",
+    "stand_2025": "M48,O48",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "BITUBO SRL",
+    "nome_eicma": "BITUBO  S.R.L.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "10",
+    "stand_2025": "C60",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "BMW ITALIA SPA",
+    "nome_eicma": "BMW ITALIA SPA",
+    "match_score": 100,
+    "match_type": "exact",
+    "edizioni_eicma": [
+      2024
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "BOTTECCHIA CICLI SRL",
+    "nome_eicma": "BOTTECCHIA CICLI  S.R.L.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "BRAKING SRL",
+    "nome_eicma": "BRAKING - SUNSTAR ENGINEERING GMBH",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "CABERG SPA",
+    "nome_eicma": "CABERG  S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "CASALINI  SRL",
+    "nome_eicma": "CASALINI - ECIE S.R.L.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2024
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "CICLI LOMBARDO S.p.A.",
+    "nome_eicma": "CICLI LOMBARDO",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "CICLI OLYMPIA SRL",
+    "nome_eicma": "CICLI OLYMPIA",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "COBO SPA",
+    "nome_eicma": "COBO S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2023,
+      2024
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "DAINESE SPA",
+    "nome_eicma": "DAINESE SPA - WIND TRADING S.R.L.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "DENVER SRL",
+    "nome_eicma": "DENVER SRL",
+    "match_score": 100,
+    "match_type": "exact",
+    "edizioni_eicma": [
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "DOMINO SRL",
+    "nome_eicma": "DOMINO  S.R.L.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "5",
+    "stand_2025": "O58",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "DUCATI MOTOR HOLDING SPA",
+    "nome_eicma": "DUCATI MOTOR HOLDING S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "5",
+    "stand_2025": "O82",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "E. BERGAMASCHI & FIGLIO SPA",
+    "nome_eicma": "E. BERGAMASCHI & FIGLIO S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "18",
+    "stand_2025": "G62",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "ECIE SRL",
+    "nome_eicma": "ECIE S.R.L. - E. BERGAMASCHI & FIGLIO S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "ENDURANCE TWO WHEELERS SPA",
+    "nome_eicma": "ENDURANCE TWO WHEELERS S.P.A",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "6",
+    "stand_2025": "C30",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "ESTRIMA SPA",
+    "nome_eicma": "ESTRIMA S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "EXPO TIME SRL",
+    "nome_eicma": "EXPO TIME SRL",
+    "match_score": 100,
+    "match_type": "exact",
+    "edizioni_eicma": [
+      2022,
+      2024,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "11",
+    "stand_2025": "D11",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "FANTIC MOTOR SPA",
+    "nome_eicma": "FANTIC MOTOR  S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2024
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "FIVE SRL",
+    "nome_eicma": "FIVE  S.R.L.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "FORBIKES SRL",
+    "nome_eicma": "FORBIKES SRL",
+    "match_score": 100,
+    "match_type": "exact",
+    "edizioni_eicma": [
+      2022
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "FORELETTRONICA SRL",
+    "nome_eicma": "FORELETTRONICA  S.R.L.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "GAERNE SPA",
+    "nome_eicma": "GAERNE   S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "5",
+    "stand_2025": "G64",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "GIVI SPA",
+    "nome_eicma": "GIVI  SPA",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "7",
+    "stand_2025": "A50",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "HONPE TECHNOLOGY SRL",
+    "nome_eicma": "HONPE TECHNOLOGY  S.R.L.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "5",
+    "stand_2025": "I64",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "ITALJET SRL",
+    "nome_eicma": "ITALJET  S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "5",
+    "stand_2025": "Q54",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "KTM  SPORTMOTORCYCLE  ITALIA S.R.L.",
+    "nome_eicma": "KTM SPORTMOTORCYCLE ITALIA S.R.L.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "MANDELLI SRL",
+    "nome_eicma": "MANDELLI  SRL - TUCANO URBANO S.R.L.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "MBP MOTO SRL",
+    "nome_eicma": "MBP MOTO S.R.L. - KEEWAY GROUP - MORBIDELLI",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "6",
+    "stand_2025": "B20",
+    "brand_type": 2
+  },
+  {
+    "nome_ancma": "MOTO MORINI SRL",
+    "nome_eicma": "MOTO MORINI  S.R.L.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "10",
+    "stand_2025": "A54",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "MOTORI MINARELLI SPA",
+    "nome_eicma": "MOTORI MINARELLI S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "MOTORPARTS SRL",
+    "nome_eicma": "MOTORPARTS S.R.L.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "5",
+    "stand_2025": "C66",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "MOTORQUALITY SPA",
+    "nome_eicma": "MOTORQUALITY S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "10",
+    "stand_2025": "E87",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "MV AGUSTA MOTOR SPA",
+    "nome_eicma": "MV AGUSTA MOTOR S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "18",
+    "stand_2025": "I70",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "NOLANGROUP SPA",
+    "nome_eicma": "NOLANGROUP S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "9",
+    "stand_2025": "I63",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "OZONE SRL",
+    "nome_eicma": "OZONE SRL",
+    "match_score": 100,
+    "match_type": "exact",
+    "edizioni_eicma": [
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "P.M.R. S.r.l.",
+    "nome_eicma": "P.M.R.   S.R.L.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "PATROLLINE GROUP SOCIETA’ COOPERATIVA",
+    "nome_eicma": "PATROLLINE GROUP SOCIETA’ COOPERATIVA",
+    "match_score": 100,
+    "match_type": "exact",
+    "edizioni_eicma": [
+      2022,
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "PELPI INTERNATIONAL SRL",
+    "nome_eicma": "PELPI INTERNATIONAL",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "14",
+    "stand_2025": "C46,C45,C42",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "PIAGGIO & C SPA",
+    "nome_eicma": "PIAGGIO & C   S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "9",
+    "stand_2025": "E76",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "REGINA CATENE CALIBRATE SPA",
+    "nome_eicma": "REGINA  CATENE CALIBRATE  S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "5",
+    "stand_2025": "M59",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "RMS Spa",
+    "nome_eicma": "RMS  S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "10",
+    "stand_2025": "H84",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "SANDRO MENTASTI SRL",
+    "nome_eicma": "SANDRO MENTASTI  S.R.L. - E. BERGAMASCHI & FIGLIO S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "18",
+    "stand_2025": "G62",
+    "brand_type": 2
+  },
+  {
+    "nome_ancma": "SOFT WAY SRL",
+    "nome_eicma": "SOFT WAY S.R.L. - EDITORIALE DOMUS S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "5",
+    "stand_2025": "Q74",
+    "brand_type": 3
+  },
+  {
+    "nome_ancma": "SPIDI SPORT SRL",
+    "nome_eicma": "SPIDI SPORT S.R.L.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "5",
+    "stand_2025": "E77",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "STM ITALY SRL",
+    "nome_eicma": "STM ITALY",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "5",
+    "stand_2025": "Q63",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "SUZUKI ITALIA SPA",
+    "nome_eicma": "SUZUKI ITALIA S.P.A.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "6",
+    "stand_2025": "I42,I46",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "SWM MOTORCYCLES SRL",
+    "nome_eicma": "SWM MOTORCYCLES   S.R.L.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "11",
+    "stand_2025": "O06",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "TOMMASELLI SRL",
+    "nome_eicma": "TOMMASELLI SRL - DOMINO  S.R.L.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "UFO PLAST ITALY SRL",
+    "nome_eicma": "UFO PLAST ITALY S.R.L.",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "7",
+    "stand_2025": "C30",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "VECCHI SRL",
+    "nome_eicma": "VECCHI S.R.L. - SPARK EXHAUST TECHNOLOGY",
+    "match_score": 100.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "5",
+    "stand_2025": "G57",
+    "brand_type": 3
+  },
+  {
+    "nome_ancma": "WOTTAN MOTOR ITALIA",
+    "nome_eicma": "WOTTAN MOTOR ITALIA",
+    "match_score": 100,
+    "match_type": "exact",
+    "edizioni_eicma": [
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "5",
+    "stand_2025": "M52",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "SOCIETA’ GENERALE RICAMBI (EUROPA) P.A.",
+    "nome_eicma": "SOCIETA' GENERALE RICAMBI (EUROPA) P.A.",
+    "match_score": 97.4,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "6",
+    "stand_2025": "D40,B40",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "BENELLI Q. J. S.R.L.",
+    "nome_eicma": "BENELLI Q.J. S.R.L.",
+    "match_score": 96.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "6",
+    "stand_2025": "D20",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "H&H SPORTS PROTECTION SRL",
+    "nome_eicma": "H&H SPORTS PROTECTION  S.R.L. (ORIGINE)",
+    "match_score": 95,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "Honda Motor Europe Ltd – Italia",
+    "nome_eicma": "HONDA MOTOR EUROPE LTD. - ITALIA - GRUPPO PRITELLI  S.R.L.",
+    "match_score": 95,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "MICHE S.R.L.",
+    "nome_eicma": "MICHELIN  - BUD RACING",
+    "match_score": 95,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2025
+    ],
+    "paese": "FRANCE",
+    "padiglione_2025": "11",
+    "stand_2025": "S44",
+    "brand_type": 3
+  },
+  {
+    "nome_ancma": "PLASTICHE CASSANO SRL",
+    "nome_eicma": "PLASTICHE CASSANO PROGRIP  S.R.L. - WIND TRADING S.R.L.",
+    "match_score": 95.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "ROBERT BOSCH GMBH BRANCH IN ITALY",
+    "nome_eicma": "ROBERT BOSCH GMBH",
+    "match_score": 95,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2023,
+      2025
+    ],
+    "paese": "GERMANY",
+    "padiglione_2025": "18",
+    "stand_2025": "E66",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "TRIUMPH MOTORCYCLES  SRL",
+    "nome_eicma": "TRIUMPH MOTORCYCLES ITALIA",
+    "match_score": 95.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "5",
+    "stand_2025": "E80",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "YAMAHA MOTOR EUROPE N.V.",
+    "nome_eicma": "YAMAHA MOTOR EUROPE - FILIALE ITALIA",
+    "match_score": 95.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "ZERO MOTORCYCLES BV",
+    "nome_eicma": "ZERO MOTORCYCLES",
+    "match_score": 95.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "NETHERLANDS",
+    "padiglione_2025": "7",
+    "stand_2025": "O32",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "BREMBO NV",
+    "nome_eicma": "BREMBO N.V.",
+    "match_score": 94.1,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2024,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "5",
+    "stand_2025": "O71",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "DR ITALIA SRL",
+    "nome_eicma": "GPR ITALIA  S.R.L.",
+    "match_score": 94.1,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "9",
+    "stand_2025": "G53",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "TUV RHEINLAND ITALIA SRL",
+    "nome_eicma": "TÜV RHEINLAND",
+    "match_score": 92.3,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2025
+    ],
+    "paese": "CHINA",
+    "padiglione_2025": "10",
+    "stand_2025": "H71",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "TM MOTO SRL",
+    "nome_eicma": "N MOTO - JIANGSU LVNENG ELECTRICAL BICYCLE TECHNOLOGY CO. ，LTD",
+    "match_score": 90.9,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "VALENTINO MOTOR COMPANY SPA",
+    "nome_eicma": "TVS MOTOR COMPANY",
+    "match_score": 90.3,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "18",
+    "stand_2025": "I58",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "KAWASAKI MOTORS EUROPE N.V. FILIALE ITALIANA",
+    "nome_eicma": "YAMAHA MOTOR EUROPE N.V. FILIALE ITALIA",
+    "match_score": 89.7,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2025
+    ],
+    "paese": "NETHERLANDS",
+    "padiglione_2025": "10",
+    "stand_2025": "E90",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "ATALA SPA",
+    "nome_eicma": "TALARIA",
+    "match_score": 88.9,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "DELL’ORTO SPA",
+    "nome_eicma": "DELL'ORTO S.P.A.",
+    "match_score": 88.9,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "9",
+    "stand_2025": "I73",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "DINO BIKES SPA",
+    "nome_eicma": "DYNO BIKE - DIMSPORT SRL",
+    "match_score": 88.9,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "18",
+    "stand_2025": "D65",
+    "brand_type": 3
+  },
+  {
+    "nome_ancma": "FABRIK SRL",
+    "nome_eicma": "BERIK - GREEN STAR HONG KONG  LTD",
+    "match_score": 88.9,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2024
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "LIGIER GROUP ITALIA SRL",
+    "nome_eicma": "GPR ITALIA  S.R.L.",
+    "match_score": 88.9,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "9",
+    "stand_2025": "G53",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "LOOK ITALIA SRL",
+    "nome_eicma": "SKY ITALIA  S.R.L.",
+    "match_score": 88.9,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "MOBILITY-TRADE SRL",
+    "nome_eicma": "E3MOBILITY - ITALY2VOLT SRL",
+    "match_score": 88.9,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "V-ITA GROUP SPA",
+    "nome_eicma": "MT GROUP",
+    "match_score": 87.5,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2025
+    ],
+    "paese": "SPAIN",
+    "padiglione_2025": "10",
+    "stand_2025": "E60",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "VITTORIA SPA",
+    "nome_eicma": "VICTORIA - NINGBO LONGJIA MOTORCYCLE CO., LTD.",
+    "match_score": 87.5,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2025
+    ],
+    "paese": "CHINA",
+    "padiglione_2025": "18",
+    "stand_2025": "A64",
+    "brand_type": 3
+  },
+  {
+    "nome_ancma": "CANYON ITALIA SRL",
+    "nome_eicma": "HORMANN ITALIA SRL - EDITORIALE DOMUS S.P.A.",
+    "match_score": 87.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "JOYSON ITALIA SrL",
+    "nome_eicma": "LARSSON ITALIA  S.R.L.",
+    "match_score": 87.0,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "11",
+    "stand_2025": "E41",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "FGF INDUSTRY SPA",
+    "nome_eicma": "ACSUD INDUSTRY - ACSUD SACIM DISTRIBUTION",
+    "match_score": 85.7,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "paese": "FRANCE",
+    "padiglione_2025": "9",
+    "stand_2025": "I51",
+    "brand_type": 3
+  },
+  {
+    "nome_ancma": "NIU TECHNOLOGIES ITALY SRL",
+    "nome_eicma": "NAMURA TECHNOLOGIES",
+    "match_score": 85.7,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "RABITTI AUTO SRL",
+    "nome_eicma": "ITB AUTO SRL - DESNER",
+    "match_score": 85.7,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "7",
+    "stand_2025": "Q30",
+    "brand_type": 2
+  },
+  {
+    "nome_ancma": "VP ITALY SRL",
+    "nome_eicma": "VIKY ITALY  S.R.L.",
+    "match_score": 85.7,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2023
+    ],
+    "paese": "",
+    "padiglione_2025": "",
+    "stand_2025": "",
+    "brand_type": 0
+  },
+  {
+    "nome_ancma": "BELGROVE ITALIA SRL",
+    "nome_eicma": "GPR ITALIA  S.R.L.",
+    "match_score": 85.5,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "9",
+    "stand_2025": "G53",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "GROUPE PSA ITALIA SPA",
+    "nome_eicma": "GPR ITALIA  S.R.L.",
+    "match_score": 85.5,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2022,
+      2023,
+      2025
+    ],
+    "paese": "ITALY",
+    "padiglione_2025": "9",
+    "stand_2025": "G53",
+    "brand_type": 1
+  },
+  {
+    "nome_ancma": "PEUGEOT MOTOCYCLES ITALIA SAS ITALIAN BRANCH",
+    "nome_eicma": "DJANGO BY PEUGEOT MOTOCYCLES  - PEUGEOT MOTOCYCLES  groupe",
+    "match_score": 85.5,
+    "match_type": "fuzzy",
+    "edizioni_eicma": [
+      2025
+    ],
+    "paese": "FRANCE",
+    "padiglione_2025": "9",
+    "stand_2025": "Q54",
+    "brand_type": 3
+  }
+]
