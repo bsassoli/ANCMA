@@ -1,0 +1,360 @@
+[
+  {
+    "id": "mock-alert-17",
+    "titolo": "Regolamento EU — Etichettatura energetica per e-bike e speed pedelec",
+    "fonte": "EU",
+    "stato": "iter",
+    "data_pubblicazione": "2026-02-26",
+    "data_scadenza_commenti": "2026-09-30",
+    "url_fonte": "https://example.eu/regulation/mock-alert-17",
+    "categorie_impattate": [
+      "Importatori e distributori",
+      "Costruttori veicoli elettrici L-category",
+      "Costruttori e-bike e cargo bike"
+    ],
+    "tags": [
+      "elettrico",
+      "sostenibilità",
+      "etichettatura"
+    ],
+    "testo_breve": "Introduzione di un sistema di etichettatura energetica A-G per e-bike e speed pedelec, basato su efficienza del motore, autonomia reale e impatto ambientale del ciclo di vita della batteria."
+  },
+  {
+    "id": "mock-alert-16",
+    "titolo": "Proposta Regolamento EU — Standard caricabatterie universale veicoli L-category",
+    "fonte": "EU",
+    "stato": "proposta",
+    "data_pubblicazione": "2026-02-26",
+    "data_scadenza_commenti": "2026-09-30",
+    "url_fonte": "https://example.eu/regulation/mock-alert-16",
+    "categorie_impattate": [
+      "Costruttori motocicli e scooter (termici)",
+      "Importatori e distributori",
+      "Costruttori veicoli elettrici L-category"
+    ],
+    "tags": [
+      "elettrico",
+      "infrastrutture",
+      "standardizzazione"
+    ],
+    "testo_breve": "Proposta di regolamento per standardizzare il connettore di ricarica per tutti i veicoli elettrici L-category venduti in UE. Obbligo di compatibilità CCS Combo dal 2028 per tutti i nuovi modelli."
+  },
+  {
+    "id": "eu-euro5plus",
+    "titolo": "Regolamento EU Euro 5+ per veicoli L-category",
+    "fonte": "EU",
+    "stato": "vigente",
+    "data_pubblicazione": "2024-01-01",
+    "data_scadenza_commenti": null,
+    "url_fonte": "https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32020R0740",
+    "categorie_impattate": [
+      "Costruttori motocicli e scooter (termici)",
+      "Costruttori veicoli elettrici L-category",
+      "Produttori componentistica e accessori"
+    ],
+    "tags": [
+      "emissioni",
+      "omologazione",
+      "L-category"
+    ],
+    "testo_breve": "Il regolamento Euro 5+ introduce limiti più stringenti sulle emissioni per motocicli e ciclomotori, inclusi requisiti OBD-II avanzati e monitoraggio in tempo reale. Si applica a tutte le nuove omologazioni dal 1° gennaio 2024."
+  },
+  {
+    "id": "eu-euro7-moto",
+    "titolo": "Proposta Euro 7 — Estensione ai veicoli L-category",
+    "fonte": "EU",
+    "stato": "proposta",
+    "data_pubblicazione": "2025-06-15",
+    "data_scadenza_commenti": "2026-03-31",
+    "url_fonte": "https://ec.europa.eu/info/law/better-regulation/have-your-say/initiatives/12313-European-emission-standards-Euro-7_en",
+    "categorie_impattate": [
+      "Costruttori motocicli e scooter (termici)",
+      "Costruttori veicoli elettrici L-category",
+      "Produttori componentistica e accessori",
+      "Importatori e distributori"
+    ],
+    "tags": [
+      "emissioni",
+      "omologazione",
+      "L-category",
+      "transizione"
+    ],
+    "testo_breve": "La proposta di estendere Euro 7 ai veicoli L-category prevede limiti emissivi tecnologicamente neutri, inclusione di particolato e ammoniaca, e requisiti di durata batterie per veicoli elettrici. L'iter legislativo è in corso al Parlamento EU."
+  },
+  {
+    "id": "eu-incentivi-mobilita",
+    "titolo": "Direttiva EU incentivi mobilità elettrica leggera",
+    "fonte": "EU",
+    "stato": "iter",
+    "data_pubblicazione": "2025-03-20",
+    "data_scadenza_commenti": "2026-06-30",
+    "url_fonte": "https://ec.europa.eu/transport/themes/urban/cpt_en",
+    "categorie_impattate": [
+      "Costruttori e-bike e cargo bike",
+      "Costruttori veicoli elettrici L-category",
+      "Importatori e distributori",
+      "Fornitori tecnologia e software"
+    ],
+    "tags": [
+      "incentivi",
+      "elettrico",
+      "mobilità sostenibile"
+    ],
+    "testo_breve": "Framework europeo per armonizzare gli incentivi nazionali alla mobilità elettrica leggera (e-bike, speed pedelec, L-category elettrici). Prevede soglie minime di contributo e criteri di eleggibilità comuni tra Stati membri."
+  },
+  {
+    "id": "it-mite-incentivi-ev",
+    "titolo": "Decreto MiTE — Incentivi acquisto veicoli elettrici 2025-2027",
+    "fonte": "Italia",
+    "stato": "vigente",
+    "data_pubblicazione": "2025-01-15",
+    "data_scadenza_commenti": null,
+    "url_fonte": "https://www.mite.gov.it/pagina/incentivi-veicoli-elettrici",
+    "categorie_impattate": [
+      "Costruttori e-bike e cargo bike",
+      "Costruttori veicoli elettrici L-category",
+      "Importatori e distributori"
+    ],
+    "tags": [
+      "incentivi",
+      "elettrico",
+      "Italia"
+    ],
+    "testo_breve": "Il decreto stanzia 300 milioni per il triennio 2025-2027 per incentivi all'acquisto di veicoli elettrici a due ruote. Bonus fino a €3.000 per L-category elettrici e €500 per e-bike con rottamazione."
+  },
+  {
+    "id": "eu-batterie-2023",
+    "titolo": "Regolamento EU Batterie (2023/1542)",
+    "fonte": "EU",
+    "stato": "vigente",
+    "data_pubblicazione": "2023-08-17",
+    "data_scadenza_commenti": null,
+    "url_fonte": "https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32023R1542",
+    "categorie_impattate": [
+      "Costruttori e-bike e cargo bike",
+      "Costruttori veicoli elettrici L-category",
+      "Produttori componentistica e accessori",
+      "Fornitori tecnologia e software"
+    ],
+    "tags": [
+      "batterie",
+      "elettrico",
+      "sostenibilità",
+      "due diligence"
+    ],
+    "testo_breve": "Regolamento sulla sostenibilità delle batterie: impone requisiti di carbon footprint, contenuto riciclato minimo, passaporto digitale e due diligence sulla catena di approvvigionamento. Applicazione graduale fino al 2027."
+  },
+  {
+    "id": "eu-speed-pedelec",
+    "titolo": "Normativa omologazione EU per speed pedelec",
+    "fonte": "EU",
+    "stato": "iter",
+    "data_pubblicazione": "2025-09-10",
+    "data_scadenza_commenti": "2026-04-15",
+    "url_fonte": "https://ec.europa.eu/growth/sectors/automotive/legislation/type-approval_en",
+    "categorie_impattate": [
+      "Costruttori e-bike e cargo bike",
+      "Costruttori veicoli elettrici L-category",
+      "Produttori componentistica e accessori",
+      "Importatori e distributori"
+    ],
+    "tags": [
+      "omologazione",
+      "elettrico",
+      "speed pedelec",
+      "L-category"
+    ],
+    "testo_breve": "Revisione dei criteri di omologazione per speed pedelec (25-45 km/h), con nuova classificazione L1e-A. Include requisiti di frenata ABS opzionale, visibilità e standard costruttivi uniformi in tutta la UE."
+  },
+  {
+    "id": "eu-direttiva-patenti",
+    "titolo": "III Direttiva Patenti EU — Revisione categorie AM/A1/A2/A",
+    "fonte": "EU",
+    "stato": "proposta",
+    "data_pubblicazione": "2025-11-01",
+    "data_scadenza_commenti": "2026-05-01",
+    "url_fonte": "https://ec.europa.eu/transport/road_safety/topics/driving-licence_en",
+    "categorie_impattate": [
+      "Costruttori motocicli e scooter (termici)",
+      "Costruttori veicoli elettrici L-category",
+      "Importatori e distributori"
+    ],
+    "tags": [
+      "patenti",
+      "sicurezza",
+      "formazione",
+      "accesso"
+    ],
+    "testo_breve": "La revisione della direttiva patenti propone accesso graduale semplificato alle categorie A1/A2, formazione digitale obbligatoria e patente digitale. Possibile innalzamento dell'età minima per categoria A senza limiti."
+  },
+  {
+    "id": "eu-reach-componentistica",
+    "titolo": "Regolamento REACH — Restrizioni materiali per componentistica veicoli",
+    "fonte": "EU",
+    "stato": "vigente",
+    "data_pubblicazione": "2024-06-01",
+    "data_scadenza_commenti": null,
+    "url_fonte": "https://echa.europa.eu/regulations/reach",
+    "categorie_impattate": [
+      "Produttori componentistica e accessori",
+      "Costruttori motocicli e scooter (termici)",
+      "Costruttori e-bike e cargo bike",
+      "Importatori e distributori"
+    ],
+    "tags": [
+      "materiali",
+      "sicurezza",
+      "ambiente",
+      "componentistica"
+    ],
+    "testo_breve": "Aggiornamento allegato XVII del regolamento REACH con nuove restrizioni su piombo, cromo esavalente e PFAS nella componentistica veicoli. Obblighi di sostituzione entro 36 mesi dalla pubblicazione."
+  },
+  {
+    "id": "eu-antidumping-cina",
+    "titolo": "Regolamento antidumping — Import veicoli elettrici cinesi L-category",
+    "fonte": "EU",
+    "stato": "consultazione",
+    "data_pubblicazione": "2025-07-20",
+    "data_scadenza_commenti": "2026-01-20",
+    "url_fonte": "https://trade.ec.europa.eu/tdi/case_details.cfm?id=2685",
+    "categorie_impattate": [
+      "Costruttori veicoli elettrici L-category",
+      "Costruttori e-bike e cargo bike",
+      "Importatori e distributori",
+      "Produttori componentistica e accessori"
+    ],
+    "tags": [
+      "commercio",
+      "antidumping",
+      "import",
+      "Cina"
+    ],
+    "testo_breve": "Indagine antidumping della Commissione EU sulle importazioni di veicoli elettrici L-category dalla Cina. Dazi provvisori del 17-38% proposti. Consultazione pubblica in corso con scadenza gennaio 2026."
+  },
+  {
+    "id": "eu-sump",
+    "titolo": "Piano d'azione mobilità urbana sostenibile EU (SUMP Guidelines)",
+    "fonte": "EU",
+    "stato": "vigente",
+    "data_pubblicazione": "2024-10-05",
+    "data_scadenza_commenti": null,
+    "url_fonte": "https://urban-mobility-observatory.transport.ec.europa.eu/sustainable-urban-mobility-plans_en",
+    "categorie_impattate": [
+      "Costruttori e-bike e cargo bike",
+      "Costruttori veicoli elettrici L-category",
+      "Fornitori tecnologia e software"
+    ],
+    "tags": [
+      "mobilità sostenibile",
+      "urbanistica",
+      "infrastrutture"
+    ],
+    "testo_breve": "Linee guida aggiornate per i piani urbani di mobilità sostenibile. Enfasi su zone a basse emissioni, infrastrutture ciclabili, hub intermodali e integrazione veicoli leggeri elettrici nella pianificazione urbana."
+  },
+  {
+    "id": "it-ecobonus-2024",
+    "titolo": "Ecobonus Italia — Incentivi mobilità 2024-2025",
+    "fonte": "Italia",
+    "stato": "vigente",
+    "data_pubblicazione": "2024-03-01",
+    "data_scadenza_commenti": null,
+    "url_fonte": "https://ecobonus.mise.gov.it/",
+    "categorie_impattate": [
+      "Costruttori motocicli e scooter (termici)",
+      "Costruttori e-bike e cargo bike",
+      "Costruttori veicoli elettrici L-category",
+      "Importatori e distributori"
+    ],
+    "tags": [
+      "incentivi",
+      "Italia",
+      "ecobonus"
+    ],
+    "testo_breve": "Rifinanziamento Ecobonus con 200 milioni annui per il biennio. Include bonus per moto Euro 5+ con rottamazione e potenziamento degli incentivi per veicoli elettrici L-category e e-bike da trasporto."
+  },
+  {
+    "id": "eu-gsr2",
+    "titolo": "Regolamento EU sicurezza attiva veicoli — GSR2 Estensione L-category",
+    "fonte": "EU",
+    "stato": "proposta",
+    "data_pubblicazione": "2025-12-01",
+    "data_scadenza_commenti": "2026-07-01",
+    "url_fonte": "https://ec.europa.eu/info/law/better-regulation/have-your-say/initiatives/13090-Vehicle-safety_en",
+    "categorie_impattate": [
+      "Costruttori motocicli e scooter (termici)",
+      "Costruttori veicoli elettrici L-category",
+      "Produttori componentistica e accessori",
+      "Fornitori tecnologia e software"
+    ],
+    "tags": [
+      "sicurezza",
+      "ADAS",
+      "omologazione",
+      "tecnologia"
+    ],
+    "testo_breve": "Proposta di estensione del General Safety Regulation 2 ai veicoli L-category: ABS obbligatorio per tutte le cilindrate, ISA adattivo, frenata automatica d'emergenza e connettività V2X per modelli dal 2028."
+  },
+  {
+    "id": "eu-cyber-veicoli",
+    "titolo": "Regolamento EU Cybersecurity per veicoli connessi (UNECE WP.29 R155/R156)",
+    "fonte": "EU",
+    "stato": "iter",
+    "data_pubblicazione": "2025-05-01",
+    "data_scadenza_commenti": "2026-02-28",
+    "url_fonte": "https://unece.org/transport/vehicle-regulations-wp29/cybersecurity",
+    "categorie_impattate": [
+      "Costruttori motocicli e scooter (termici)",
+      "Costruttori veicoli elettrici L-category",
+      "Fornitori tecnologia e software"
+    ],
+    "tags": [
+      "cybersecurity",
+      "connettività",
+      "omologazione",
+      "tecnologia"
+    ],
+    "testo_breve": "Estensione degli standard UNECE R155/R156 ai veicoli L-category connessi. Obblighi di cybersecurity management system, aggiornamenti OTA sicuri e vulnerability management per tutti i motocicli con connettività dal 2027."
+  },
+  {
+    "id": "it-ztl-elettrici",
+    "titolo": "Decreto MIT — Accesso ZTL per veicoli elettrici L-category",
+    "fonte": "Italia",
+    "stato": "consultazione",
+    "data_pubblicazione": "2025-10-15",
+    "data_scadenza_commenti": "2026-03-15",
+    "url_fonte": "https://www.mit.gov.it/normativa/decreto-ztl-veicoli-elettrici",
+    "categorie_impattate": [
+      "Costruttori veicoli elettrici L-category",
+      "Costruttori e-bike e cargo bike",
+      "Importatori e distributori"
+    ],
+    "tags": [
+      "mobilità sostenibile",
+      "urbanistica",
+      "elettrico",
+      "Italia"
+    ],
+    "testo_breve": "Proposta di decreto che armonizza l'accesso alle ZTL italiane per veicoli elettrici L-category e speed pedelec. Prevede accesso libero permanente e parcheggio gratuito nelle strisce blu per veicoli a zero emissioni."
+  },
+  {
+    "id": "eu-ai-act-veicoli",
+    "titolo": "AI Act EU — Implicazioni per ADAS e guida assistita motocicli",
+    "fonte": "EU",
+    "stato": "vigente",
+    "data_pubblicazione": "2024-08-01",
+    "data_scadenza_commenti": null,
+    "url_fonte": "https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32024R1689",
+    "categorie_impattate": [
+      "Costruttori motocicli e scooter (termici)",
+      "Costruttori veicoli elettrici L-category",
+      "Fornitori tecnologia e software"
+    ],
+    "tags": [
+      "intelligenza artificiale",
+      "ADAS",
+      "sicurezza",
+      "tecnologia"
+    ],
+    "testo_breve": "L'AI Act classifica i sistemi ADAS per motocicli come 'alto rischio'. Obblighi di trasparenza, valutazione di conformità e monitoraggio post-market per tutti i sistemi di assistenza alla guida basati su AI."
+  }
+]

@@ -1,0 +1,117 @@
+{
+  "sintesi_esecutiva": "La proposta di regolamento UE introduce l'obbligo di standardizzazione del connettore di ricarica CCS Combo per tutti i veicoli elettrici L-category dal 2028. Questa misura mira a uniformare le infrastrutture di ricarica e migliorare l'interoperabilità, seguendo l'approccio già adottato per le auto elettriche. L'impatto principale ricade sui costruttori di veicoli elettrici che dovranno adeguare i propri prodotti, mentre si aprono opportunità per fornitori di componentistica e infrastrutture. La standardizzazione potrebbe accelerare l'adozione della mobilità elettrica leggera ma comporta costi di transizione significativi per i produttori che utilizzano standard proprietari.",
+  "impatti": {
+    "Costruttori motocicli e scooter (termici)": {
+      "livello": "basso",
+      "descrizione": "Impatto limitato nel breve termine ma crescente pressione verso l'elettrificazione della gamma. Necessità di pianificare la transizione tecnologica per restare competitivi.",
+      "opportunita": [
+        "Accelerazione piani elettrificazione",
+        "Standardizzazione riduce barriere ingresso mercato elettrico"
+      ],
+      "rischi": [
+        "Maggiore pressione competitiva da veicoli elettrici",
+        "Necessità investimenti R&D anticipati"
+      ]
+    },
+    "Costruttori e-bike e cargo bike": {
+      "livello": "medio",
+      "descrizione": "Possibile estensione futura della standardizzazione alle e-bike di categoria superiore. Impatto moderato con opportunità di allineamento preventivo agli standard.",
+      "opportunita": [
+        "Possibile beneficio da infrastrutture condivise",
+        "Standardizzazione supply chain batterie"
+      ],
+      "rischi": [
+        "Potenziale estensione obbligo a categorie e-bike",
+        "Costi adeguamento se incluse in futuro"
+      ]
+    },
+    "Costruttori veicoli elettrici L-category": {
+      "livello": "alto",
+      "descrizione": "Impatto diretto e significativo. Obbligo di adeguamento completo entro 2028 per tutti i nuovi modelli, con necessità di riprogettazione sistemi di ricarica esistenti.",
+      "opportunita": [
+        "Accesso universale a infrastrutture di ricarica",
+        "Riduzione costi sviluppo connettori proprietari",
+        "Maggiore intercambiabilità per consumatori"
+      ],
+      "rischi": [
+        "Costi significativi di riprogettazione",
+        "Obsolescenza modelli attuali",
+        "Tempi stretti per compliance"
+      ]
+    },
+    "Produttori componentistica e accessori": {
+      "livello": "alto",
+      "descrizione": "Forte opportunità di business per produttori di connettori, cavi e sistemi di ricarica CCS Combo. Necessità di riconversione linee produttive esistenti.",
+      "opportunita": [
+        "Nuovo mercato standardizzato di grandi dimensioni",
+        "Economie di scala su componenti uniformi",
+        "Opportunità export verso mercati extra-UE"
+      ],
+      "rischi": [
+        "Investimenti in nuove tecnologie produttive",
+        "Obsolescenza stock connettori proprietari"
+      ]
+    },
+    "Importatori e distributori": {
+      "livello": "medio",
+      "descrizione": "Necessità di adeguamento cataloghi e gestione transizione stock. Semplificazione gestionale a regime ma complessità nella fase di transizione.",
+      "opportunita": [
+        "Semplificazione gestione ricambi e accessori",
+        "Uniformità offerta ricarica"
+      ],
+      "rischi": [
+        "Gestione stock obsoleti",
+        "Necessità formazione rete vendita",
+        "Possibili ritardi nelle forniture durante transizione"
+      ]
+    },
+    "Fornitori tecnologia e software": {
+      "livello": "medio",
+      "descrizione": "Opportunità nello sviluppo di soluzioni software per gestione ricarica standardizzata e servizi digitali connessi alla nuova infrastruttura.",
+      "opportunita": [
+        "Sviluppo piattaforme gestione ricarica universali",
+        "Servizi digitali per mobilità integrata",
+        "Soluzioni IoT per monitoraggio"
+      ],
+      "rischi": [
+        "Necessità aggiornamento sistemi esistenti",
+        "Competizione con player internazionali"
+      ]
+    }
+  },
+  "timeline_chiave": [
+    {
+      "data": "2024-06-30",
+      "evento": "Scadenza consultazione pubblica proposta regolamento"
+    },
+    {
+      "data": "2025-12-31",
+      "evento": "Approvazione definitiva regolamento prevista"
+    },
+    {
+      "data": "2026-12-31",
+      "evento": "Pubblicazione standard tecnici CCS Combo dettagliati"
+    },
+    {
+      "data": "2027-06-30",
+      "evento": "Deadline omologazione nuovi modelli conformi"
+    },
+    {
+      "data": "2028-01-01",
+      "evento": "Entrata in vigore obbligo CCS Combo per tutti i nuovi modelli"
+    },
+    {
+      "data": "2030-01-01",
+      "evento": "Possibile estensione obbligo a tutti i veicoli in vendita"
+    }
+  ],
+  "azioni_raccomandate": [
+    "Coordinare gruppo di lavoro tecnico ANCMA per definizione posizione settoriale e contributo a consultazione pubblica",
+    "Avviare dialogo con istituzioni UE per assicurare tempi implementazione realistici e sostegno alla transizione",
+    "Promuovere tavolo tecnico con costruttori per condivisione best practices e riduzione costi transizione",
+    "Sviluppare programma formativo per rete distributiva su nuovi standard e implicazioni commerciali"
+  ],
+  "sentiment": "neutro",
+  "analyzed_at": "2026-02-26T22:08:06.183961",
+  "norm_id": "mock-alert-16"
+}

@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANCMA Policy Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0f;
+  --bg-card: #13131a;
+  --bg-hover: #1a1a25;
+  --bg-input: #0e0e16;
+  --border: #1e1e2e;
+  --border-light: #2a2a3a;
+  --text: #e4e4ed;
+  --text-dim: #8888a0;
+  --text-muted: #55556a;
+  --accent: #6366f1;
+  --accent-dim: #4f46e5;
+  --accent-glow: rgba(99,102,241,0.15);
+  --green: #22c55e;
+  --green-dim: rgba(34,197,94,0.15);
+  --orange: #f59e0b;
+  --orange-dim: rgba(245,158,11,0.15);
+  --red: #ef4444;
+  --red-dim: rgba(239,68,68,0.15);
+  --gray: #6b7280;
+  --gray-dim: rgba(107,114,128,0.15);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.2s ease;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-logo {
+  font-size: 18px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.header-sep {
+  width: 1px;
+  height: 24px;
+  background: var(--border-light);
+}
+
+.header-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dim);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-stats {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.header-stats span { color: var(--text-dim); font-weight: 600; }
+
+.btn {
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+  background: var(--bg-card);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn:hover { background: var(--bg-hover); border-color: var(--accent); }
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.btn-primary:hover { background: var(--accent-dim); }
+
+.btn-sm { padding: 5px 10px; font-size: 12px; }
+
+/* Main Layout */
+.main {
+  display: flex;
+  height: calc(100vh - 64px);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  min-width: 260px;
+  border-right: 1px solid var(--border);
+  padding: 20px 16px;
+  overflow-y: auto;
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar-brand {
+  text-align: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar-brand h2 {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #fff, var(--text-dim));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sidebar-brand p {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 4px;
+}
+
+.filter-section h4 {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.filter-radios { display: flex; flex-direction: column; gap: 4px; }
+
+.filter-radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 13px;
+  transition: background var(--transition);
+}
+
+.filter-radio:hover { background: var(--bg-hover); }
+
+.filter-radio.active {
+  background: var(--accent-glow);
+  color: var(--accent);
+}
+
+.filter-radio input { display: none; }
+
+.radio-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition);
+}
+
+.filter-radio.active .radio-dot {
+  border-color: var(--accent);
+}
+
+.filter-radio.active .radio-dot::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.filter-checks { display: flex; flex-direction: column; gap: 3px; }
+
+.filter-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 12px;
+  transition: background var(--transition);
+  color: var(--text-dim);
+}
+
+.filter-check:hover { background: var(--bg-hover); }
+.filter-check.active { color: var(--accent); background: var(--accent-glow); }
+
+.filter-check input { display: none; }
+
+.check-box {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 2px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition);
+  font-size: 9px;
+}
+
+.filter-check.active .check-box {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: white;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.search-input:focus { border-color: var(--accent); }
+
+.search-input::placeholder { color: var(--text-muted); }
+
+.filter-counter {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+}
+
+.filter-counter span { color: var(--accent); font-weight: 700; font-size: 16px; }
+
+/* List */
+.list-panel {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.norm-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+}
+
+.norm-card:hover { border-color: var(--border-light); transform: translateY(-1px); }
+
+.norm-card.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 4px 24px var(--accent-glow); }
+
+.norm-card.new-alert {
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-vigente { background: var(--green-dim); color: var(--green); }
+.badge-proposta { background: var(--red-dim); color: var(--red); }
+.badge-iter { background: var(--orange-dim); color: var(--orange); }
+.badge-consultazione { background: var(--gray-dim); color: var(--gray); }
+
+.badge-sentiment {
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.sentiment-positivo { background: var(--green-dim); color: var(--green); }
+.sentiment-neutro { background: var(--orange-dim); color: var(--orange); }
+.sentiment-negativo { background: var(--red-dim); color: var(--red); }
+
+.card-fonte {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.card-date {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.card-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.pill {
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 10px;
+  background: var(--accent-glow);
+  color: var(--accent);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.chip {
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 10px;
+  background: var(--bg);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Analysis Panel */
+.analysis-panel {
+  width: 0;
+  min-width: 0;
+  overflow: hidden;
+  border-left: 1px solid var(--border);
+  background: var(--bg-card);
+  transition: width 0.3s ease, min-width 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.analysis-panel.open {
+  width: 440px;
+  min-width: 440px;
+}
+
+.panel-header {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.panel-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.panel-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all var(--transition);
+}
+
+.panel-close:hover { background: var(--bg-hover); color: var(--text); }
+
+.panel-title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.panel-link {
+  font-size: 12px;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.panel-link:hover { text-decoration: underline; }
+
+/* Tabs */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.tab {
+  flex: 1;
+  padding: 12px 8px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition);
+  background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-family: inherit;
+}
+
+.tab:hover { color: var(--text-dim); }
+.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+.tab-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+/* Sintesi */
+.sintesi-box {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.sentiment-badge-lg {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Impatti */
+.impact-item {
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.impact-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: background var(--transition);
+  background: transparent;
+  border: none;
+  width: 100%;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  text-align: left;
+}
+
+.impact-header:hover { background: var(--bg-hover); }
+
+.impact-name { font-weight: 600; flex: 1; }
+
+.impact-bar-container {
+  width: 80px;
+  height: 6px;
+  background: var(--bg);
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 0 12px;
+}
+
+.impact-bar {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.impact-bar.alto { width: 100%; background: var(--red); }
+.impact-bar.medio { width: 60%; background: var(--orange); }
+.impact-bar.basso { width: 30%; background: var(--green); }
+.impact-bar.nessuno { width: 5%; background: var(--gray); }
+
+.impact-level {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  min-width: 52px;
+  text-align: right;
+}
+
+.impact-level.alto { color: var(--red); }
+.impact-level.medio { color: var(--orange); }
+.impact-level.basso { color: var(--green); }
+.impact-level.nessuno { color: var(--gray); }
+
+.impact-detail {
+  display: none;
+  padding: 12px 14px;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.impact-detail.open { display: block; }
+
+.impact-desc {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.impact-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.impact-chip {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.impact-chip.opp { background: var(--green-dim); color: var(--green); }
+.impact-chip.risk { background: var(--red-dim); color: var(--red); }
+
+.impact-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+/* Timeline */
+.timeline { position: relative; padding-left: 20px; }
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 20px;
+  padding-left: 16px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -17px;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border-light);
+  border: 2px solid var(--bg-card);
+}
+
+.timeline-item.future::before {
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.timeline-item.past { opacity: 0.5; }
+
+.timeline-date {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.timeline-item.future .timeline-date { color: var(--accent); }
+
+.timeline-event {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+/* Azioni */
+.action-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  transition: background var(--transition);
+}
+
+.action-item:hover { background: var(--bg-hover); }
+
+.action-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 2px solid var(--border-light);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  background: transparent;
+  color: transparent;
+  font-size: 11px;
+  padding: 0;
+  font-family: inherit;
+}
+
+.action-check.checked {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.action-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 18px;
+}
+
+.action-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+.action-item.checked-item .action-text {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+/* Spinner */
+.spinner-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10,10,15,0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 10;
+  border-radius: var(--radius);
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.spinner-text {
+  font-size: 13px;
+  color: var(--text-dim);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse { 50% { opacity: 0.5; } }
+
+/* Toast */
+.toast-container {
+  position: fixed;
+  top: 80px;
+  right: 24px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.toast {
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--accent);
+  color: var(--text);
+  font-size: 13px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  animation: toastIn 0.3s ease-out;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.toast.out { animation: toastOut 0.3s ease-in forwards; }
+
+@keyframes toastOut {
+  to { opacity: 0; transform: translateX(40px); }
+}
+
+/* Skeleton */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-hover) 50%, var(--bg-card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+/* No analysis state */
+.no-analysis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 40px;
+  color: var(--text-muted);
+}
+
+.no-analysis-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.3;
+}
+
+.no-analysis h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: var(--text-dim);
+}
+
+.no-analysis p {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-light); }
+
+/* Typing effect */
+.typing-cursor::after {
+  content: '▊';
+  animation: blink 0.8s step-end infinite;
+  color: var(--accent);
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <div class="header-logo">ANCMA</div>
+    <div class="header-sep"></div>
+    <div class="header-title">Policy Intelligence</div>
+  </div>
+  <div class="header-right">
+    <div class="header-stats">
+      <span id="stats-count">0</span> normative monitorate &middot; Ultimo aggiornamento: <span id="stats-date">—</span>
+    </div>
+    <button class="btn" onclick="simulaAlert()">
+      ⚡ Simula nuovo alert
+    </button>
+  </div>
+</header>
+
+<div class="main">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <h2>ANCMA</h2>
+      <p>Policy Monitor</p>
+    </div>
+
+    <div class="filter-section">
+      <h4>Stato</h4>
+      <div class="filter-radios" id="filter-stato">
+        <label class="filter-radio active" data-value="">
+          <input type="radio" name="stato" value="" checked>
+          <span class="radio-dot"></span>
+          Tutti
+        </label>
+        <label class="filter-radio" data-value="vigente">
+          <input type="radio" name="stato" value="vigente">
+          <span class="radio-dot"></span>
+          🟢 Vigenti
+        </label>
+        <label class="filter-radio" data-value="proposta">
+          <input type="radio" name="stato" value="proposta">
+          <span class="radio-dot"></span>
+          🔴 Proposte
+        </label>
+        <label class="filter-radio" data-value="iter">
+          <input type="radio" name="stato" value="iter">
+          <span class="radio-dot"></span>
+          🟠 In iter
+        </label>
+        <label class="filter-radio" data-value="consultazione">
+          <input type="radio" name="stato" value="consultazione">
+          <span class="radio-dot"></span>
+          ⚪ Consultazione
+        </label>
+      </div>
+    </div>
+
+    <div class="filter-section">
+      <h4>Categoria</h4>
+      <div class="filter-checks" id="filter-categorie"></div>
+    </div>
+
+    <div class="filter-section">
+      <h4>Tag tematico</h4>
+      <div class="filter-checks" id="filter-tags"></div>
+    </div>
+
+    <div class="filter-section">
+      <h4>Cerca</h4>
+      <input type="text" class="search-input" id="search-input" placeholder="Cerca normativa...">
+    </div>
+
+    <div class="filter-counter">
+      <span id="count-filtered">0</span> normative trovate
+    </div>
+
+    <button class="btn" onclick="resetFilters()" style="width:100%;justify-content:center;">
+      ↺ Reset filtri
+    </button>
+  </aside>
+
+  <!-- List -->
+  <main class="list-panel" id="list-panel">
+    <!-- Cards injected by JS -->
+  </main>
+
+  <!-- Analysis Panel -->
+  <aside class="analysis-panel" id="analysis-panel">
+    <div class="panel-header">
+      <div class="panel-header-top">
+        <span id="panel-badge"></span>
+        <button class="panel-close" onclick="closePanel()">✕</button>
+      </div>
+      <div class="panel-title" id="panel-title">—</div>
+      <a class="panel-link" id="panel-link" href="#" target="_blank">Fonte normativa ↗</a>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="sintesi" onclick="switchTab('sintesi', this)">Sintesi</button>
+      <button class="tab" data-tab="impatti" onclick="switchTab('impatti', this)">Impatti</button>
+      <button class="tab" data-tab="timeline" onclick="switchTab('timeline', this)">Timeline</button>
+      <button class="tab" data-tab="azioni" onclick="switchTab('azioni', this)">Azioni</button>
+    </div>
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="pane-sintesi">
+        <div class="no-analysis" id="no-analysis">
+          <div class="no-analysis-icon">🔍</div>
+          <h3>Nessuna analisi disponibile</h3>
+          <p>Clicca "Analizza con AI" sulla card della normativa per generare un'analisi dettagliata.</p>
+        </div>
+        <div id="sintesi-content" style="display:none;">
+          <div class="sintesi-box" id="sintesi-text"></div>
+          <div id="sintesi-sentiment"></div>
+          <button class="btn btn-sm" onclick="reAnalyze()" style="margin-top:12px;">🔄 Rigenera analisi</button>
+        </div>
+      </div>
+      <div class="tab-pane" id="pane-impatti"></div>
+      <div class="tab-pane" id="pane-timeline"></div>
+      <div class="tab-pane" id="pane-azioni"></div>
+    </div>
+  </aside>
+</div>
+
+<div class="toast-container" id="toast-container"></div>
+
+<script>
+// State
+let normative = [];
+let allTags = new Set();
+let categorie = [];
+let selectedStato = '';
+let selectedCategorie = new Set();
+let selectedTags = new Set();
+let searchQuery = '';
+let selectedNormId = null;
+let currentAnalysis = null;
+let analyzingIds = new Set();
+
+// Init
+async function init() {
+  const [normsRes, catsRes] = await Promise.all([
+    fetch('/api/normative'),
+    fetch('/api/categorie')
+  ]);
+  normative = await normsRes.json();
+  categorie = await catsRes.json();
+
+  normative.forEach(n => n.tags.forEach(t => allTags.add(t)));
+
+  renderFilters();
+  renderList();
+  updateStats();
+}
+
+function renderFilters() {
+  // Categories
+  const catContainer = document.getElementById('filter-categorie');
+  const shortNames = {
+    'Costruttori motocicli e scooter (termici)': 'Moto termiche',
+    'Costruttori e-bike e cargo bike': 'E-bike / Cargo',
+    'Costruttori veicoli elettrici L-category': 'Elettrici L-cat',
+    'Produttori componentistica e accessori': 'Componentistica',
+    'Importatori e distributori': 'Import / Distrib.',
+    'Fornitori tecnologia e software': 'Tech / Software',
+  };
+  catContainer.innerHTML = categorie.map(c => `
+    <label class="filter-check" data-value="${c}" onclick="toggleFilter('categoria', '${c}', this)">
+      <input type="checkbox">
+      <span class="check-box">✓</span>
+      ${shortNames[c] || c}
+    </label>
+  `).join('');
+
+  // Tags
+  const tagContainer = document.getElementById('filter-tags');
+  const sortedTags = [...allTags].sort();
+  tagContainer.innerHTML = sortedTags.map(t => `
+    <label class="filter-check" data-value="${t}" onclick="toggleFilter('tag', '${t}', this)">
+      <input type="checkbox">
+      <span class="check-box">✓</span>
+      ${t}
+    </label>
+  `).join('');
+
+  // Stato radios
+  document.querySelectorAll('#filter-stato .filter-radio').forEach(el => {
+    el.addEventListener('click', () => {
+      document.querySelectorAll('#filter-stato .filter-radio').forEach(r => r.classList.remove('active'));
+      el.classList.add('active');
+      selectedStato = el.dataset.value;
+      applyFilters();
+    });
+  });
+
+  // Search
+  document.getElementById('search-input').addEventListener('input', (e) => {
+    searchQuery = e.target.value;
+    applyFilters();
+  });
+}
+
+function toggleFilter(type, value, el) {
+  const set = type === 'categoria' ? selectedCategorie : selectedTags;
+  if (set.has(value)) {
+    set.delete(value);
+    el.classList.remove('active');
+  } else {
+    set.add(value);
+    el.classList.add('active');
+  }
+  applyFilters();
+}
+
+function resetFilters() {
+  selectedStato = '';
+  selectedCategorie.clear();
+  selectedTags.clear();
+  searchQuery = '';
+  document.getElementById('search-input').value = '';
+  document.querySelectorAll('#filter-stato .filter-radio').forEach((r, i) => {
+    r.classList.toggle('active', i === 0);
+  });
+  document.querySelectorAll('.filter-check').forEach(c => c.classList.remove('active'));
+  applyFilters();
+}
+
+function applyFilters() {
+  let params = new URLSearchParams();
+  if (selectedStato) params.set('stato', selectedStato);
+  if (selectedCategorie.size === 1) params.set('categoria', [...selectedCategorie][0]);
+  if (selectedTags.size === 1) params.set('tag', [...selectedTags][0]);
+  if (searchQuery) params.set('q', searchQuery);
+
+  fetch(`/api/normative?${params}`)
+    .then(r => r.json())
+    .then(data => {
+      // Client-side multi-filter
+      let filtered = data;
+      if (selectedCategorie.size > 1) {
+        filtered = filtered.filter(n =>
+          [...selectedCategorie].every(c => n.categorie_impattate.includes(c))
+        );
+      }
+      if (selectedTags.size > 1) {
+        filtered = filtered.filter(n =>
+          [...selectedTags].every(t => n.tags.includes(t))
+        );
+      }
+      normative = filtered;
+      renderList();
+    });
+}
+
+function renderList() {
+  const panel = document.getElementById('list-panel');
+
+  if (normative.length === 0) {
+    panel.innerHTML = `
+      <div class="no-analysis" style="height:auto;padding:60px;">
+        <div class="no-analysis-icon">📋</div>
+        <h3>Nessuna normativa trovata</h3>
+        <p>Prova a modificare i filtri di ricerca.</p>
+      </div>`;
+    document.getElementById('count-filtered').textContent = '0';
+    return;
+  }
+
+  panel.innerHTML = normative.map(n => renderCard(n)).join('');
+  document.getElementById('count-filtered').textContent = normative.length;
+}
+
+function renderCard(n) {
+  const fonte = n.fonte === 'EU' ? '🇪🇺' : '🇮🇹';
+  const isAnalyzing = analyzingIds.has(n.id);
+  const sentimentBadge = n.has_analysis && n.sentiment
+    ? `<span class="badge badge-sentiment sentiment-${n.sentiment}">${sentimentIcon(n.sentiment)} ${n.sentiment}</span>`
+    : '';
+
+  return `
+    <div class="norm-card ${selectedNormId === n.id ? 'selected' : ''}" id="card-${n.id}" onclick="selectNorm('${n.id}')">
+      ${isAnalyzing ? `
+        <div class="spinner-overlay">
+          <div class="spinner"></div>
+          <div class="spinner-text">Claude sta analizzando...</div>
+        </div>` : ''}
+      <div class="card-top">
+        <span class="badge badge-${n.stato}">${n.stato}</span>
+        <span class="card-fonte">${fonte} ${n.fonte}</span>
+        ${sentimentBadge}
+      </div>
+      <div class="card-title">${n.titolo}</div>
+      <div class="card-date">📅 ${formatDate(n.data_pubblicazione)}${n.data_scadenza_commenti ? ` · ⏰ Scadenza: ${formatDate(n.data_scadenza_commenti)}` : ''}</div>
+      <div class="card-categories">
+        ${n.categorie_impattate.map(c => `<span class="pill">${shortCat(c)}</span>`).join('')}
+      </div>
+      <div class="card-tags">
+        ${n.tags.map(t => `<span class="chip">${t}</span>`).join('')}
+      </div>
+      <div class="card-actions">
+        ${n.has_analysis
+          ? `<button class="btn btn-sm" onclick="event.stopPropagation(); viewAnalysis('${n.id}')">📊 Vedi analisi</button>`
+          : `<button class="btn btn-sm btn-primary" onclick="event.stopPropagation(); analyzeNorm('${n.id}')">🤖 Analizza con AI</button>`
+        }
+      </div>
+    </div>`;
+}
+
+function shortCat(c) {
+  const map = {
+    'Costruttori motocicli e scooter (termici)': 'Moto termiche',
+    'Costruttori e-bike e cargo bike': 'E-bike',
+    'Costruttori veicoli elettrici L-category': 'EV L-cat',
+    'Produttori componentistica e accessori': 'Componenti',
+    'Importatori e distributori': 'Import/Distrib',
+    'Fornitori tecnologia e software': 'Tech/SW',
+  };
+  return map[c] || c;
+}
+
+function sentimentIcon(s) {
+  return { positivo: '🟢', neutro: '🟡', negativo: '🔴' }[s] || '⚪';
+}
+
+function formatDate(d) {
+  if (!d) return '—';
+  const [y, m, day] = d.split('-');
+  const months = ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
+  return `${parseInt(day)} ${months[parseInt(m)-1]} ${y}`;
+}
+
+function updateStats() {
+  fetch('/api/dashboard').then(r => r.json()).then(d => {
+    document.getElementById('stats-count').textContent = d.totale_normative;
+    document.getElementById('stats-date').textContent = new Date().toLocaleDateString('it-IT');
+  });
+}
+
+// Select normativa
+function selectNorm(id) {
+  selectedNormId = id;
+  document.querySelectorAll('.norm-card').forEach(c => c.classList.remove('selected'));
+  const card = document.getElementById(`card-${id}`);
+  if (card) card.classList.add('selected');
+
+  const norm = normative.find(n => n.id === id);
+  if (!norm) return;
+
+  const panel = document.getElementById('analysis-panel');
+  panel.classList.add('open');
+
+  document.getElementById('panel-title').textContent = norm.titolo;
+  document.getElementById('panel-link').href = norm.url_fonte;
+  document.getElementById('panel-badge').innerHTML =
+    `<span class="badge badge-${norm.stato}">${norm.stato}</span>`;
+
+  // Check for analysis
+  fetch(`/api/analyze/${id}`)
+    .then(r => {
+      if (r.ok) return r.json();
+      throw new Error('No analysis');
+    })
+    .then(analysis => {
+      currentAnalysis = analysis;
+      renderAnalysis(analysis);
+    })
+    .catch(() => {
+      currentAnalysis = null;
+      showNoAnalysis();
+    });
+
+  switchTab('sintesi', document.querySelector('.tab[data-tab="sintesi"]'));
+}
+
+function showNoAnalysis() {
+  document.getElementById('no-analysis').style.display = 'flex';
+  document.getElementById('sintesi-content').style.display = 'none';
+  document.getElementById('pane-impatti').innerHTML = '';
+  document.getElementById('pane-timeline').innerHTML = '';
+  document.getElementById('pane-azioni').innerHTML = '';
+}
+
+function renderAnalysis(a) {
+  // Sintesi
+  document.getElementById('no-analysis').style.display = 'none';
+  document.getElementById('sintesi-content').style.display = 'block';
+
+  const sintesiEl = document.getElementById('sintesi-text');
+  typeText(sintesiEl, a.sintesi_esecutiva);
+
+  const sColors = { positivo: 'var(--green)', neutro: 'var(--orange)', negativo: 'var(--red)' };
+  const sBgs = { positivo: 'var(--green-dim)', neutro: 'var(--orange-dim)', negativo: 'var(--red-dim)' };
+  document.getElementById('sintesi-sentiment').innerHTML = `
+    <span class="sentiment-badge-lg" style="background:${sBgs[a.sentiment]};color:${sColors[a.sentiment]};">
+      ${sentimentIcon(a.sentiment)} Sentiment: ${a.sentiment}
+    </span>`;
+
+  // Impatti
+  const impattiPane = document.getElementById('pane-impatti');
+  if (a.impatti) {
+    impattiPane.innerHTML = Object.entries(a.impatti).map(([cat, imp]) => `
+      <div class="impact-item">
+        <button class="impact-header" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="impact-name">${shortCat(cat)}</span>
+          <div class="impact-bar-container"><div class="impact-bar ${imp.livello}"></div></div>
+          <span class="impact-level ${imp.livello}">${imp.livello}</span>
+        </button>
+        <div class="impact-detail">
+          <div class="impact-desc">${imp.descrizione || ''}</div>
+          ${(imp.opportunita && imp.opportunita.length) ? `
+            <div class="impact-label">Opportunità</div>
+            <div class="impact-chips">${imp.opportunita.map(o => `<span class="impact-chip opp">✓ ${o}</span>`).join('')}</div>
+          ` : ''}
+          ${(imp.rischi && imp.rischi.length) ? `
+            <div class="impact-label" style="margin-top:8px;">Rischi</div>
+            <div class="impact-chips">${imp.rischi.map(r => `<span class="impact-chip risk">⚠ ${r}</span>`).join('')}</div>
+          ` : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Timeline
+  const timelinePane = document.getElementById('pane-timeline');
+  if (a.timeline_chiave && a.timeline_chiave.length) {
+    const today = new Date().toISOString().slice(0, 10);
+    const sorted = [...a.timeline_chiave].sort((a, b) => a.data.localeCompare(b.data));
+    timelinePane.innerHTML = `<div class="timeline">${sorted.map(t => {
+      const isPast = t.data < today;
+      return `
+        <div class="timeline-item ${isPast ? 'past' : 'future'}">
+          <div class="timeline-date">${formatDate(t.data)}</div>
+          <div class="timeline-event">${t.evento}</div>
+        </div>`;
+    }).join('')}</div>`;
+  }
+
+  // Azioni
+  const azioniPane = document.getElementById('pane-azioni');
+  if (a.azioni_raccomandate && a.azioni_raccomandate.length) {
+    azioniPane.innerHTML = a.azioni_raccomandate.map((az, i) => `
+      <div class="action-item" id="action-${i}">
+        <button class="action-check" onclick="toggleAction(${i}, this)">✓</button>
+        <span class="action-num">${i + 1}.</span>
+        <span class="action-text">${az}</span>
+      </div>
+    `).join('');
+  }
+}
+
+function toggleAction(i, btn) {
+  btn.classList.toggle('checked');
+  document.getElementById(`action-${i}`).classList.toggle('checked-item');
+}
+
+// Typing effect
+function typeText(el, text) {
+  el.textContent = '';
+  el.classList.add('typing-cursor');
+  let i = 0;
+  const speed = 15;
+  function type() {
+    if (i < text.length) {
+      el.textContent += text[i];
+      i++;
+      setTimeout(type, speed);
+    } else {
+      el.classList.remove('typing-cursor');
+    }
+  }
+  type();
+}
+
+// Tabs
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(`pane-${name}`).classList.add('active');
+}
+
+// Analyze
+async function analyzeNorm(id) {
+  analyzingIds.add(id);
+  renderList();
+
+  try {
+    const res = await fetch(`/api/analyze/${id}`, { method: 'POST' });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.detail || 'Errore analisi');
+    }
+    const analysis = await res.json();
+
+    analyzingIds.delete(id);
+
+    // Update the norm in local state
+    const norm = normative.find(n => n.id === id);
+    if (norm) {
+      norm.has_analysis = true;
+      norm.sentiment = analysis.sentiment;
+    }
+
+    renderList();
+    showToast(`Analisi completata: ${norm ? norm.titolo.substring(0, 50) + '...' : id}`);
+
+    // Auto-open panel
+    selectedNormId = id;
+    selectNorm(id);
+  } catch (e) {
+    analyzingIds.delete(id);
+    renderList();
+    showToast(`Errore: ${e.message}`, true);
+  }
+}
+
+function viewAnalysis(id) {
+  selectNorm(id);
+}
+
+function reAnalyze() {
+  if (selectedNormId) analyzeNorm(selectedNormId);
+}
+
+function closePanel() {
+  document.getElementById('analysis-panel').classList.remove('open');
+  selectedNormId = null;
+  document.querySelectorAll('.norm-card').forEach(c => c.classList.remove('selected'));
+}
+
+// Toast
+function showToast(msg, isError = false) {
+  const container = document.getElementById('toast-container');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  if (isError) toast.style.borderColor = 'var(--red)';
+  toast.innerHTML = `${isError ? '❌' : '✅'} ${msg}`;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.classList.add('out');
+    setTimeout(() => toast.remove(), 300);
+  }, 4000);
+}
+
+// Simula alert
+async function simulaAlert() {
+  const res = await fetch('/api/mock-alert', { method: 'POST' });
+  const newNorm = await res.json();
+
+  normative.unshift(newNorm);
+  renderList();
+  updateStats();
+
+  // Animate
+  setTimeout(() => {
+    const card = document.getElementById(`card-${newNorm.id}`);
+    if (card) card.classList.add('new-alert');
+  }, 50);
+
+  showToast(`Nuovo alert: ${newNorm.titolo.substring(0, 50)}...`);
+}
+
+// Start
+init();
+</script>
+
+</body>
+</html>
