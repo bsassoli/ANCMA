@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: ancma-policy-monitor
+    runtime: python
+    region: frankfurt
+    rootDir: policy-monitor
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: PYTHON_VERSION
+        value: "3.12"
+
+  - type: web
+    name: ancma-eicma-network
+    runtime: python
+    region: frankfurt
+    rootDir: app
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12"

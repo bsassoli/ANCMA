@@ -293,10 +293,12 @@ def serve_frontend():
 
 
 if __name__ == "__main__":
+    port = int(os.getenv("PORT", 8001))
     print("\n🏛️  ANCMA Policy Monitor & Regulatory Intelligence")
     print("=" * 50)
-    print("📡 Server avviato su http://localhost:8001")
+    print(f"📡 Server avviato su http://localhost:{port}")
     print("🔑 ANTHROPIC_API_KEY:", "✅ configurata" if os.getenv("ANTHROPIC_API_KEY") else "❌ mancante")
     print("=" * 50)
-    webbrowser.open("http://localhost:8001")
-    uvicorn.run(app, host="0.0.0.0", port=8001)
+    if not os.getenv("RENDER"):
+        webbrowser.open(f"http://localhost:{port}")
+    uvicorn.run(app, host="0.0.0.0", port=port)
