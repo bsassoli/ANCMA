@@ -8,6 +8,14 @@
 >
 > **L'unica finalità di queste demo è dimostrare le potenzialità dell'IA generativa** applicata al settore della mobilità a due ruote e al contesto associativo di ANCMA.
 
+
+
+## Sommario
+
+1. [Policy Monitor & Regulatory Intelligence](https://ancma-policy-monitor.onrender.com/): Monitora le normative europee e italiane rilevanti per il settore due ruote e le analizza automaticamente tramite intelligenza artificiale (Claude, Anthropic).
+2. [EICMA Network Visualizer](https://ancma-eicma-network.onrender.com/): Visualizza la rete di relazioni tra gli espositori EICMA delle edizioni 2022, 2023, 2024 e 2025 sotto forma di grafo interattivo.
+3. [Dashboard Mercato Moto Italia](https://ancma-dashboard-mercato.onrender.com/): Dashboard interattiva che visualizza i dati di immatricolazione del mercato moto, scooter e cicli in Italia dal 2022 al 2025, con grafici e un chatbot AI per l'analisi conversazionale dei dati.
+
 ---
 
 ## 1. Policy Monitor & Regulatory Intelligence
@@ -99,7 +107,7 @@ Dashboard interattiva che visualizza i dati di immatricolazione del mercato moto
 
 - L'efficacia della **visualizzazione dati interattiva** (D3.js) per comunicare trend di mercato complessi
 - La potenza di un **chatbot AI contestualizzato** che conosce i dati specifici dell'associazione
-- La possibilità di creare **strumenti di business intelligence** accessibili senza competenze tecniche
+- La possibilità di creare **strumenti di business intelligence** accessibili senza competenze tecnich
 
 ---
 
