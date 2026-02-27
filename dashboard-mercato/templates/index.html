@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANCMA Market Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080810;--bg-card:#0f0f1a;--bg-hover:#161625;--bg-input:#0a0a14;
+  --border:#1a1a2e;--border-light:#252540;
+  --text:#e8e8f0;--text-dim:#9898b0;--text-muted:#606078;
+  --accent:#f97316;--accent-dim:#ea580c;--accent-glow:rgba(249,115,22,.12);
+  --moto:#6366f1;--scooter:#f97316;--ciclomotori:#10b981;--elettrici:#facc15;
+  --green:#22c55e;--green-dim:rgba(34,197,94,.12);
+  --red:#ef4444;--red-dim:rgba(239,68,68,.12);
+  --radius:12px;--radius-sm:8px;--transition:.2s ease;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow:hidden;height:100vh}
+.header{display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid var(--border);background:var(--bg-card);height:60px;flex-shrink:0;z-index:100}
+.header-left{display:flex;align-items:center;gap:14px}
+.header-logo{font-size:17px;font-weight:800;background:linear-gradient(135deg,var(--accent),#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header-sep{width:1px;height:22px;background:var(--border-light)}
+.header-sub{font-size:12px;color:var(--text-muted);font-weight:500}
+.header-kpis{display:flex;gap:10px}
+.kpi-pill{padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;gap:6px}
+.kpi-pill .val{color:var(--text)}
+.kpi-pill .delta{font-size:10px;font-weight:700}
+.delta.pos{color:var(--green)}.delta.neg{color:var(--red)}
+.hamburger{display:none;background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;padding:4px 8px}
+.layout{display:flex;height:calc(100vh - 60px)}
+.sidebar{width:260px;min-width:260px;border-right:1px solid var(--border);background:var(--bg-card);display:flex;flex-direction:column;overflow-y:auto;padding:20px 14px;gap:24px;transition:transform .3s ease}
+.nav-section h4{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);margin-bottom:10px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--radius-sm);cursor:pointer;font-size:13px;font-weight:500;color:var(--text-dim);transition:all var(--transition);border:none;background:none;width:100%;text-align:left;font-family:inherit}
+.nav-item:hover{background:var(--bg-hover);color:var(--text)}
+.nav-item.active{background:var(--accent-glow);color:var(--accent)}
+.nav-icon{font-size:16px;width:22px;text-align:center}
+.anno-toggle{display:flex;gap:4px;flex-wrap:wrap}
+.anno-btn{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text-dim);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all var(--transition)}
+.anno-btn:hover{border-color:var(--accent)}
+.anno-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.sidebar-footer{margin-top:auto;padding-top:16px;border-top:1px solid var(--border);font-size:10px;color:var(--text-muted);text-align:center;line-height:1.6}
+.content{flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:24px}
+.section{display:none}.section.active{display:flex;flex-direction:column;gap:20px}
+.section-title{font-size:20px;font-weight:700;letter-spacing:-.5px}
+.section-sub{font-size:13px;color:var(--text-muted);margin-top:2px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.kpi-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;position:relative;overflow:hidden}
+.kpi-card .label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:8px}
+.kpi-card .value{font-size:32px;font-weight:800;letter-spacing:-1px;line-height:1}
+.kpi-card .delta-row{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:13px;font-weight:600}
+.kpi-card .bar{position:absolute;bottom:0;left:0;right:0;height:3px}
+.chart-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+.chart-card h3{font-size:14px;font-weight:600;margin-bottom:4px}
+.chart-card .chart-sub{font-size:11px;color:var(--text-muted);margin-bottom:16px}
+.chart-wrap{width:100%;overflow:hidden}
+.chart-wrap svg{width:100%;display:block}
+.legend{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-dim)}
+.legend-dot{width:10px;height:10px;border-radius:3px}
+/* Toggle */
+.toggle-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.toggle-label{font-size:12px;color:var(--text-dim)}
+.toggle{position:relative;width:40px;height:22px;background:var(--border);border-radius:11px;cursor:pointer;transition:background var(--transition);border:none;padding:0}
+.toggle.on{background:var(--accent)}
+.toggle::after{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform var(--transition)}
+.toggle.on::after{transform:translateX(18px)}
+/* Table */
+.data-table{width:100%;border-collapse:collapse;font-size:13px}
+.data-table th{text-align:left;padding:10px 12px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);border-bottom:1px solid var(--border)}
+.data-table td{padding:10px 12px;border-bottom:1px solid var(--border)}
+.data-table tr:hover td{background:var(--bg-hover)}
+/* Donut */
+.donut-row{display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
+.donut-wrap{flex:0 0 280px}
+.donut-table{flex:1;min-width:300px}
+/* Chat */
+.chat-container{display:flex;flex-direction:column;height:calc(100vh - 180px);max-height:600px}
+.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius) var(--radius) 0 0}
+.msg{max-width:85%;padding:12px 16px;border-radius:var(--radius);font-size:13px;line-height:1.6}
+.msg.bot{align-self:flex-start;background:var(--bg-card);border:1px solid var(--border)}
+.msg.user{align-self:flex-end;background:var(--accent);color:#fff}
+.msg-header{display:flex;align-items:center;gap:6px;margin-bottom:6px;font-size:11px;font-weight:600;color:var(--text-muted)}
+.msg.user .msg-header{color:rgba(255,255,255,.7)}
+.chat-suggestions{display:flex;gap:6px;padding:10px 16px;flex-wrap:wrap;background:var(--bg);border-left:1px solid var(--border);border-right:1px solid var(--border)}
+.suggestion{padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);font-size:11px;cursor:pointer;transition:all var(--transition);font-family:inherit}
+.suggestion:hover{border-color:var(--accent);color:var(--accent)}
+.chat-input-row{display:flex;border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);overflow:hidden}
+.chat-input{flex:1;padding:14px 16px;background:var(--bg-card);border:none;color:var(--text);font-family:inherit;font-size:13px;outline:none}
+.chat-input::placeholder{color:var(--text-muted)}
+.chat-send{padding:14px 20px;background:var(--accent);border:none;color:#fff;font-weight:600;cursor:pointer;font-family:inherit;font-size:13px;transition:background var(--transition)}
+.chat-send:hover{background:var(--accent-dim)}
+.chat-send:disabled{opacity:.5;cursor:not-allowed}
+.typing-cursor::after{content:'\u2588';animation:blink .7s step-end infinite;color:var(--accent)}
+@keyframes blink{50%{opacity:0}}
+/* Tooltip */
+.d3-tooltip{position:fixed;padding:10px 14px;background:rgba(15,15,26,.95);border:1px solid var(--border-light);border-radius:var(--radius-sm);font-size:12px;color:var(--text);pointer-events:none;z-index:1000;line-height:1.6;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.d3-tooltip .tt-title{font-weight:600;margin-bottom:4px}
+.d3-tooltip .tt-row{display:flex;justify-content:space-between;gap:16px}
+.d3-tooltip .tt-dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px}
+/* Mini sparkline cards */
+.mini-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.mini-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
+.mini-card .mc-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:4px}
+.mini-card .mc-val{font-size:22px;font-weight:800}
+.mini-card .mc-delta{font-size:12px;font-weight:600;margin-top:2px}
+.mini-card svg{margin-top:8px}
+/* Responsive */
+@media(max-width:768px){
+  .sidebar{position:fixed;left:0;top:60px;bottom:0;z-index:200;transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .hamburger{display:block}
+  .header-kpis{display:none}
+  .donut-row{flex-direction:column}
+  .kpi-grid{grid-template-columns:1fr 1fr}
+}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <button class="hamburger" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
+    <div class="header-logo">ANCMA Market Intelligence</div>
+    <div class="header-sep"></div>
+    <div class="header-sub">Dati ufficiali immatricolazioni Italia</div>
+  </div>
+  <div class="header-kpis" id="header-kpis"></div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <nav class="nav-section">
+      <h4>Dashboard</h4>
+      <button class="nav-item active" data-section="panoramica" onclick="goTo('panoramica',this)"><span class="nav-icon">📊</span>Panoramica</button>
+      <button class="nav-item" data-section="trend" onclick="goTo('trend',this)"><span class="nav-icon">📈</span>Trend Mensile</button>
+      <button class="nav-item" data-section="segmenti" onclick="goTo('segmenti',this)"><span class="nav-icon">🍩</span>Segmenti</button>
+      <button class="nav-item" data-section="elettrico" onclick="goTo('elettrico',this)"><span class="nav-icon">⚡</span>Elettrico</button>
+      <button class="nav-item" data-section="chat" onclick="goTo('chat',this)"><span class="nav-icon">🤖</span>Chat AI</button>
+    </nav>
+    <div class="nav-section">
+      <h4>Anno di riferimento</h4>
+      <div class="anno-toggle" id="anno-toggle"></div>
+    </div>
+    <div class="sidebar-footer">
+      Fonte: Confindustria ANCMA<br>Dati aggiornati a dicembre 2025
+    </div>
+  </aside>
+
+  <main class="content" id="content">
+    <!-- PANORAMICA -->
+    <div class="section active" id="sec-panoramica">
+      <div><div class="section-title">Panoramica del Mercato</div><div class="section-sub">Immatricolazioni veicoli a due ruote in Italia</div></div>
+      <div class="kpi-grid" id="kpi-grid"></div>
+      <div class="chart-card">
+        <h3>Confronto annuale per segmento</h3>
+        <div class="chart-sub">Immatricolazioni 2022 – 2025</div>
+        <div class="chart-wrap" id="chart-annual"></div>
+        <div class="legend" id="legend-annual"></div>
+      </div>
+    </div>
+
+    <!-- TREND MENSILE -->
+    <div class="section" id="sec-trend">
+      <div><div class="section-title">Trend Mensile</div><div class="section-sub">Andamento mensile delle immatricolazioni</div></div>
+      <div class="chart-card">
+        <div class="toggle-row">
+          <span class="toggle-label">Sovrapponi 2024 vs 2025</span>
+          <button class="toggle" id="toggle-compare" onclick="toggleCompare(this)"></button>
+        </div>
+        <div class="chart-wrap" id="chart-trend"></div>
+        <div class="legend" id="legend-trend"></div>
+      </div>
+    </div>
+
+    <!-- SEGMENTI -->
+    <div class="section" id="sec-segmenti">
+      <div><div class="section-title">Quote di Mercato</div><div class="section-sub">Distribuzione per segmento</div></div>
+      <div class="donut-row">
+        <div class="donut-wrap chart-card"><div class="chart-wrap" id="chart-donut"></div></div>
+        <div class="donut-table chart-card" style="flex:1">
+          <h3>Variazioni anno su anno</h3>
+          <div class="chart-sub">Confronto con anno precedente</div>
+          <table class="data-table" id="table-yoy"><thead><tr><th>Segmento</th><th>Precedente</th><th>Attuale</th><th>Var. %</th></tr></thead><tbody></tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ELETTRICO -->
+    <div class="section" id="sec-elettrico">
+      <div><div class="section-title">Focus Elettrico</div><div class="section-sub">Evoluzione del segmento elettrico</div></div>
+      <div class="chart-card">
+        <h3>Immatricolazioni elettriche mensili</h3>
+        <div class="chart-sub">2024 vs 2025</div>
+        <div class="chart-wrap" id="chart-electric"></div>
+        <div class="legend" id="legend-electric"></div>
+      </div>
+      <div class="mini-cards" id="mini-electric"></div>
+    </div>
+
+    <!-- CHAT -->
+    <div class="section" id="sec-chat">
+      <div><div class="section-title">Assistente AI ANCMA</div><div class="section-sub">Analisi interattiva dei dati di mercato con intelligenza artificiale</div></div>
+      <div class="chat-container">
+        <div class="chat-messages" id="chat-messages">
+          <div class="msg bot"><div class="msg-header">🏍️ ANCMA AI</div>Ciao! Sono l'assistente AI di ANCMA. Puoi chiedermi qualsiasi cosa sui dati di immatricolazione moto e cicli in Italia.</div>
+        </div>
+        <div class="chat-suggestions" id="chat-suggestions">
+          <button class="suggestion" onclick="askSuggestion(this)">Scooter elettrici 2025?</button>
+          <button class="suggestion" onclick="askSuggestion(this)">Miglior mese 2024?</button>
+          <button class="suggestion" onclick="askSuggestion(this)">Perché cala nel 2025?</button>
+          <button class="suggestion" onclick="askSuggestion(this)">Confronto moto vs scooter</button>
+        </div>
+        <div class="chat-input-row">
+          <input class="chat-input" id="chat-input" placeholder="Chiedi qualcosa sui dati di mercato..." onkeydown="if(event.key==='Enter')sendChat()">
+          <button class="chat-send" id="chat-send" onclick="sendChat()">Invia</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="d3-tooltip" id="tooltip" style="display:none"></div>
+
+<script>
+// ── State ──
+let dati = null;
+let annoAttivo = '2025';
+let compareMode = false;
+const COLORS = {moto:'#6366f1',scooter:'#f97316',ciclomotori:'#10b981',elettrici:'#facc15',elettrici_totali:'#facc15'};
+const LABELS = {moto:'Moto',scooter:'Scooter',ciclomotori:'Ciclomotori',elettrici:'Elettrici',elettrici_totali:'Elettrici'};
+const tooltip = d3.select('#tooltip');
+
+// ── Init ──
+async function init(){
+  const [datiRes,kpiRes] = await Promise.all([fetch('/api/dati'),fetch('/api/kpi')]);
+  dati = await datiRes.json();
+  const kpi = await kpiRes.json();
+  renderHeaderKPIs(kpi);
+  renderAnnoToggle();
+  renderAll();
+}
+
+function goTo(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  btn.classList.add('active');
+  document.querySelector('.sidebar').classList.remove('open');
+  if(id==='trend') setTimeout(()=>drawTrend(),50);
+  if(id==='segmenti') setTimeout(()=>{drawDonut();drawYoYTable()},50);
+  if(id==='elettrico') setTimeout(()=>{drawElectric();drawMiniElectric()},50);
+}
+
+function renderAnnoToggle(){
+  const el = document.getElementById('anno-toggle');
+  ['2022','2023','2024','2025'].forEach(y=>{
+    const b = document.createElement('button');
+    b.className = 'anno-btn'+(y===annoAttivo?' active':'');
+    b.textContent = y;
+    b.onclick = ()=>{
+      annoAttivo = y;
+      el.querySelectorAll('.anno-btn').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      renderAll();
+    };
+    el.appendChild(b);
+  });
+}
+
+function renderAll(){
+  renderKPICards();
+  drawAnnualChart();
+  drawTrend();
+  drawDonut();
+  drawYoYTable();
+  drawElectric();
+  drawMiniElectric();
+}
+
+// ── Header KPIs ──
+function renderHeaderKPIs(kpi){
+  const el = document.getElementById('header-kpis');
+  const items = [
+    {label:'Totale 2025',val:fmt(kpi.totale_2025),d:kpi.delta_totale},
+    {label:'Var. YoY',val:kpi.delta_totale+'%',d:kpi.delta_totale},
+    {label:'Quota EV',val:kpi.quota_elettrico+'%',d:kpi.delta_elettrici},
+  ];
+  el.innerHTML = items.map(i=>`<div class="kpi-pill"><span style="color:var(--text-muted)">${i.label}:</span><span class="val">${i.val}</span><span class="delta ${i.d>=0?'pos':'neg'}">${i.d>=0?'+':''}${i.d}%</span></div>`).join('');
+}
+
+// ── KPI Cards ──
+function renderKPICards(){
+  const c = dati.annuali[annoAttivo];
+  const pYear = String(Number(annoAttivo)-1);
+  const p = dati.annuali[pYear];
+  if(!c)return;
+  const grid = document.getElementById('kpi-grid');
+  const cards = [
+    {label:'Totale Immatricolazioni',key:'totale',color:'var(--accent)'},
+    {label:'Scooter',key:'scooter',color:COLORS.scooter},
+    {label:'Moto',key:'moto',color:COLORS.moto},
+    {label:'Elettrici',key:'elettrici_totali',color:COLORS.elettrici},
+  ];
+  grid.innerHTML = cards.map(cd=>{
+    const val = c[cd.key];
+    const delta = p ? calcDelta(val,p[cd.key]) : null;
+    const quotaStr = cd.key==='elettrici_totali' ? `<span style="font-size:12px;color:var(--text-muted);margin-left:6px">${(val/c.totale*100).toFixed(1)}% del totale</span>` : '';
+    return `<div class="kpi-card">
+      <div class="label">${cd.label} ${annoAttivo}</div>
+      <div class="value" style="color:${cd.color}"><span class="counter" data-target="${val}">0</span>${quotaStr}</div>
+      ${delta!==null?`<div class="delta-row"><span class="delta ${delta>=0?'pos':'neg'}" style="color:${delta>=0?'var(--green)':'var(--red)'}">${delta>=0?'▲':'▼'} ${Math.abs(delta)}%</span><span style="color:var(--text-muted);font-size:12px">vs ${pYear}</span></div>`:''}
+      <div class="bar" style="background:${cd.color}"></div>
+    </div>`;
+  }).join('');
+  animateCounters();
+}
+
+function animateCounters(){
+  document.querySelectorAll('.counter').forEach(el=>{
+    const target = +el.dataset.target;
+    const duration = 1200;
+    const start = performance.now();
+    function tick(now){
+      const t = Math.min((now-start)/duration,1);
+      const ease = 1-Math.pow(1-t,3);
+      el.textContent = fmt(Math.round(target*ease));
+      if(t<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}
+
+// ── Annual Chart (grouped bar) ──
+function drawAnnualChart(){
+  const wrap = document.getElementById('chart-annual');
+  wrap.innerHTML = '';
+  const W = wrap.clientWidth||700, H = 320;
+  const m = {top:20,right:20,bottom:40,left:55};
+  const svg = d3.select(wrap).append('svg').attr('viewBox',`0 0 ${W} ${H}`);
+  const years = Object.keys(dati.annuali);
+  const segs = ['moto','scooter','ciclomotori','elettrici_totali'];
+  const x0 = d3.scaleBand().domain(years).range([m.left,W-m.right]).padding(.25);
+  const x1 = d3.scaleBand().domain(segs).range([0,x0.bandwidth()]).padding(.08);
+  const maxVal = d3.max(years,y=>d3.max(segs,s=>dati.annuali[y][s]));
+  const y = d3.scaleLinear().domain([0,maxVal*1.1]).range([H-m.bottom,m.top]);
+
+  svg.append('g').attr('transform',`translate(0,${H-m.bottom})`).call(d3.axisBottom(x0).tickSize(0)).selectAll('text').style('fill','var(--text-dim)').style('font-size','12px');
+  svg.selectAll('.domain,.tick line').attr('stroke','var(--border)');
+  svg.append('g').attr('transform',`translate(${m.left},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(d3.format('.2s')).tickSize(-W+m.left+m.right)).selectAll('text').style('fill','var(--text-muted)').style('font-size','10px');
+  svg.selectAll('.tick line').attr('stroke','var(--border)').attr('stroke-dasharray','2,3');
+  svg.selectAll('.domain').remove();
+
+  years.forEach(yr=>{
+    segs.forEach(seg=>{
+      svg.append('rect')
+        .attr('x',x0(yr)+x1(seg)).attr('y',y(0)).attr('width',x1.bandwidth()).attr('height',0)
+        .attr('fill',COLORS[seg]).attr('rx',3).attr('opacity',.85)
+        .on('mouseover',function(ev){showTooltip(ev,`<div class="tt-title">${yr} — ${LABELS[seg]}</div><div>${fmt(dati.annuali[yr][seg])} unità</div>`)})
+        .on('mousemove',function(ev){moveTooltip(ev)}).on('mouseout',hideTooltip)
+        .transition().duration(800).delay(years.indexOf(yr)*100)
+        .attr('y',y(dati.annuali[yr][seg])).attr('height',y(0)-y(dati.annuali[yr][seg]));
+    });
+  });
+
+  const leg = document.getElementById('legend-annual');
+  leg.innerHTML = segs.map(s=>`<div class="legend-item"><div class="legend-dot" style="background:${COLORS[s]}"></div>${LABELS[s]}</div>`).join('');
+}
+
+// ── Trend Line Chart ──
+function drawTrend(){
+  const wrap = document.getElementById('chart-trend');
+  wrap.innerHTML = '';
+  const W = wrap.clientWidth||700, H = 360;
+  const m = {top:20,right:20,bottom:40,left:55};
+  const svg = d3.select(wrap).append('svg').attr('viewBox',`0 0 ${W} ${H}`);
+  const segs = ['moto','scooter','ciclomotori'];
+  const mesi = ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
+  const primary = dati['mensili_'+annoAttivo] || dati.mensili_2024;
+
+  const allVals = [];
+  primary.forEach(d=>segs.forEach(s=>allVals.push(d[s])));
+  if(compareMode && dati['mensili_2024'] && annoAttivo==='2025') dati.mensili_2024.forEach(d=>segs.forEach(s=>allVals.push(d[s])));
+
+  const x = d3.scalePoint().domain(mesi).range([m.left,W-m.right]).padding(.5);
+  const y = d3.scaleLinear().domain([0,d3.max(allVals)*1.15]).range([H-m.bottom,m.top]);
+
+  svg.append('g').attr('transform',`translate(0,${H-m.bottom})`).call(d3.axisBottom(x).tickSize(0)).selectAll('text').style('fill','var(--text-dim)').style('font-size','11px');
+  svg.append('g').attr('transform',`translate(${m.left},0)`).call(d3.axisLeft(y).ticks(6).tickFormat(d3.format('.2s')).tickSize(-W+m.left+m.right)).selectAll('text').style('fill','var(--text-muted)').style('font-size','10px');
+  svg.selectAll('.tick line').attr('stroke','var(--border)').attr('stroke-dasharray','2,3');
+  svg.selectAll('.domain').remove();
+
+  const line = d3.line().x(d=>x(d.mese)).y(d=>y(d.val)).curve(d3.curveMonotoneX);
+
+  // Compare (dashed)
+  if(compareMode && annoAttivo==='2025' && dati.mensili_2024){
+    segs.forEach(seg=>{
+      const pts = dati.mensili_2024.map(d=>({mese:d.mese,val:d[seg]}));
+      svg.append('path').datum(pts).attr('fill','none').attr('stroke',COLORS[seg]).attr('stroke-width',1.5).attr('stroke-dasharray','6,4').attr('opacity',.4).attr('d',line);
+    });
+  }
+
+  // Primary lines
+  segs.forEach(seg=>{
+    const pts = primary.map(d=>({mese:d.mese,val:d[seg]}));
+    const path = svg.append('path').datum(pts).attr('fill','none').attr('stroke',COLORS[seg]).attr('stroke-width',2.5).attr('d',line);
+    const len = path.node().getTotalLength();
+    path.attr('stroke-dasharray',len).attr('stroke-dashoffset',len).transition().duration(1200).attr('stroke-dashoffset',0);
+
+    // Dots
+    svg.selectAll(`.dot-${seg}`).data(pts).enter().append('circle')
+      .attr('cx',d=>x(d.mese)).attr('cy',d=>y(d.val)).attr('r',3).attr('fill',COLORS[seg]).attr('stroke',COLORS[seg]).attr('stroke-width',1)
+      .style('opacity',0).transition().delay(1200).style('opacity',1);
+
+    // Peak annotation
+    const peak = pts.reduce((a,b)=>b.val>a.val?b:a);
+    svg.append('text').attr('x',x(peak.mese)).attr('y',y(peak.val)-10).attr('text-anchor','middle').attr('fill',COLORS[seg]).attr('font-size','10px').attr('font-weight','600').text(fmt(peak.val)).style('opacity',0).transition().delay(1400).style('opacity',1);
+  });
+
+  // Hover overlay
+  const bisect = d3.bisector(d=>d).left;
+  svg.append('rect').attr('x',m.left).attr('y',m.top).attr('width',W-m.left-m.right).attr('height',H-m.top-m.bottom).attr('fill','transparent')
+    .on('mousemove',function(ev){
+      const [mx]=d3.pointer(ev);
+      const xVals = mesi.map(m=>x(m));
+      let idx = d3.scan(xVals,((a,b)=>Math.abs(a-mx)-Math.abs(b-mx)));
+      const d = primary[idx];
+      if(!d) return;
+      let html = `<div class="tt-title">${d.mese} ${annoAttivo}</div>`;
+      segs.forEach(s=>{html+=`<div class="tt-row"><span><span class="tt-dot" style="background:${COLORS[s]}"></span>${LABELS[s]}</span><span style="font-weight:600">${fmt(d[s])}</span></div>`});
+      html+=`<div class="tt-row"><span><span class="tt-dot" style="background:${COLORS.elettrici}"></span>Elettrici</span><span style="font-weight:600">${fmt(d.elettrici)}</span></div>`;
+      showTooltip(ev,html);
+    })
+    .on('mouseout',hideTooltip);
+
+  const leg = document.getElementById('legend-trend');
+  let legHtml = segs.map(s=>`<div class="legend-item"><div class="legend-dot" style="background:${COLORS[s]}"></div>${LABELS[s]} ${annoAttivo}</div>`).join('');
+  if(compareMode && annoAttivo==='2025') legHtml += segs.map(s=>`<div class="legend-item"><div class="legend-dot" style="background:${COLORS[s]};opacity:.4"></div>${LABELS[s]} 2024 (tratteggiato)</div>`).join('');
+  leg.innerHTML = legHtml;
+}
+
+function toggleCompare(btn){
+  compareMode = !compareMode;
+  btn.classList.toggle('on',compareMode);
+  drawTrend();
+}
+
+// ── Donut ──
+function drawDonut(){
+  const wrap = document.getElementById('chart-donut');
+  wrap.innerHTML = '';
+  const a = dati.annuali[annoAttivo];
+  if(!a) return;
+  const segs = ['moto','scooter','ciclomotori','elettrici_totali'];
+  const total = a.moto+a.scooter+a.ciclomotori;
+  const data = segs.filter(s=>s!=='elettrici_totali').map(s=>({seg:s,val:a[s],pct:(a[s]/total*100).toFixed(1)}));
+
+  const size = 260;
+  const svg = d3.select(wrap).append('svg').attr('viewBox',`0 0 ${size} ${size}`);
+  const g = svg.append('g').attr('transform',`translate(${size/2},${size/2})`);
+  const arc = d3.arc().innerRadius(70).outerRadius(115);
+  const pie = d3.pie().value(d=>d.val).sort(null).padAngle(.02);
+
+  g.selectAll('path').data(pie(data)).enter().append('path')
+    .attr('fill',d=>COLORS[d.data.seg]).attr('opacity',.85)
+    .on('mouseover',function(ev,d){d3.select(this).attr('opacity',1);showTooltip(ev,`<div class="tt-title">${LABELS[d.data.seg]}</div><div>${fmt(d.data.val)} unità (${d.data.pct}%)</div>`)})
+    .on('mousemove',moveTooltip).on('mouseout',function(){d3.select(this).attr('opacity',.85);hideTooltip()})
+    .transition().duration(800).attrTween('d',function(d){const i=d3.interpolate({startAngle:d.startAngle,endAngle:d.startAngle},d);return t=>arc(i(t))});
+
+  g.append('text').attr('text-anchor','middle').attr('dy','-6').attr('fill','var(--text)').attr('font-size','22px').attr('font-weight','800').text(fmt(total));
+  g.append('text').attr('text-anchor','middle').attr('dy','14').attr('fill','var(--text-muted)').attr('font-size','10px').text(annoAttivo);
+}
+
+function drawYoYTable(){
+  const tbody = document.querySelector('#table-yoy tbody');
+  const segs = ['moto','scooter','ciclomotori','elettrici_totali'];
+  const curr = dati.annuali[annoAttivo];
+  const pYear = String(Number(annoAttivo)-1);
+  const prev = dati.annuali[pYear];
+  if(!curr||!prev){tbody.innerHTML='<tr><td colspan="4" style="color:var(--text-muted)">Dati confronto non disponibili</td></tr>';return}
+  tbody.innerHTML = segs.map(s=>{
+    const d = calcDelta(curr[s],prev[s]);
+    return `<tr>
+      <td><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:${COLORS[s]};margin-right:8px"></span>${LABELS[s]}</td>
+      <td>${fmt(prev[s])}</td><td>${fmt(curr[s])}</td>
+      <td style="color:${d>=0?'var(--green)':'var(--red)'};font-weight:600">${d>=0?'+':''}${d}%</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── Electric ──
+function drawElectric(){
+  const wrap = document.getElementById('chart-electric');
+  wrap.innerHTML = '';
+  const W = wrap.clientWidth||700, H = 300;
+  const m = {top:20,right:20,bottom:40,left:50};
+  const svg = d3.select(wrap).append('svg').attr('viewBox',`0 0 ${W} ${H}`);
+  const mesi = ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
+  const d24 = dati.mensili_2024;
+  const d25 = dati.mensili_2025;
+
+  const allV = [...d24.map(d=>d.elettrici),...d25.map(d=>d.elettrici)];
+  const x = d3.scalePoint().domain(mesi).range([m.left,W-m.right]).padding(.5);
+  const y = d3.scaleLinear().domain([0,d3.max(allV)*1.15]).range([H-m.bottom,m.top]);
+
+  svg.append('g').attr('transform',`translate(0,${H-m.bottom})`).call(d3.axisBottom(x).tickSize(0)).selectAll('text').style('fill','var(--text-dim)').style('font-size','11px');
+  svg.append('g').attr('transform',`translate(${m.left},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(d3.format('~s')).tickSize(-W+m.left+m.right)).selectAll('text').style('fill','var(--text-muted)').style('font-size','10px');
+  svg.selectAll('.tick line').attr('stroke','var(--border)').attr('stroke-dasharray','2,3');svg.selectAll('.domain').remove();
+
+  const area = d3.area().x((_,i)=>x(mesi[i])).y0(y(0)).y1(d=>y(d)).curve(d3.curveMonotoneX);
+  const line = d3.line().x((_,i)=>x(mesi[i])).y(d=>y(d)).curve(d3.curveMonotoneX);
+
+  // 2024 area
+  svg.append('path').datum(d24.map(d=>d.elettrici)).attr('fill','rgba(250,204,21,.08)').attr('d',area);
+  svg.append('path').datum(d24.map(d=>d.elettrici)).attr('fill','none').attr('stroke','#facc15').attr('stroke-width',1.5).attr('stroke-dasharray','5,4').attr('opacity',.5).attr('d',line);
+
+  // 2025 area
+  svg.append('path').datum(d25.map(d=>d.elettrici)).attr('fill','rgba(250,204,21,.15)').attr('d',area);
+  svg.append('path').datum(d25.map(d=>d.elettrici)).attr('fill','none').attr('stroke','#facc15').attr('stroke-width',2.5).attr('d',line);
+
+  svg.selectAll('.dot25').data(d25).enter().append('circle').attr('cx',(_,i)=>x(mesi[i])).attr('cy',d=>y(d.elettrici)).attr('r',3.5).attr('fill','#facc15');
+
+  document.getElementById('legend-electric').innerHTML = '<div class="legend-item"><div class="legend-dot" style="background:#facc15"></div>2025</div><div class="legend-item"><div class="legend-dot" style="background:#facc15;opacity:.4"></div>2024 (tratteggiato)</div>';
+}
+
+function drawMiniElectric(){
+  const el = document.getElementById('mini-electric');
+  const tot24 = dati.mensili_2024.reduce((s,d)=>s+d.elettrici,0);
+  const tot25 = dati.mensili_2025.reduce((s,d)=>s+d.elettrici,0);
+  const delta = calcDelta(tot25,tot24);
+
+  // Build sparkline SVG
+  function spark(data,color){
+    const vals = data.map(d=>d.elettrici);
+    const max = Math.max(...vals);
+    const w = 140, h = 36;
+    const xS = d3.scaleLinear().domain([0,vals.length-1]).range([0,w]);
+    const yS = d3.scaleLinear().domain([0,max*1.1]).range([h,0]);
+    const line = d3.line().x((_,i)=>xS(i)).y(d=>yS(d)).curve(d3.curveMonotoneX);
+    return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><path d="${line(vals)}" fill="none" stroke="${color}" stroke-width="2"/></svg>`;
+  }
+
+  const cards = [
+    {label:'Totale Elettrici 2025',val:fmt(tot25),delta,spark:spark(dati.mensili_2025,'#facc15'),color:'#facc15'},
+    {label:'Totale Elettrici 2024',val:fmt(tot24),delta:null,spark:spark(dati.mensili_2024,'#facc15'),color:'#facc15'},
+    {label:'Quota EV su totale 2025',val:(dati.annuali['2025'].elettrici_totali/dati.annuali['2025'].totale*100).toFixed(1)+'%',delta:null,spark:'',color:'#facc15'},
+  ];
+  el.innerHTML = cards.map(c=>`<div class="mini-card">
+    <div class="mc-label">${c.label}</div>
+    <div class="mc-val" style="color:${c.color}">${c.val}</div>
+    ${c.delta!==null?`<div class="mc-delta" style="color:${c.delta>=0?'var(--green)':'var(--red)'}">${c.delta>=0?'▲':'▼'} ${Math.abs(c.delta)}% vs 2024</div>`:''}
+    ${c.spark}
+  </div>`).join('');
+}
+
+// ── Chat ──
+let chatBusy = false;
+async function sendChat(){
+  if(chatBusy)return;
+  const input = document.getElementById('chat-input');
+  const msg = input.value.trim();
+  if(!msg)return;
+  input.value = '';
+  appendMsg(msg,'user');
+  chatBusy = true;
+  document.getElementById('chat-send').disabled = true;
+  const botEl = appendMsg('','bot',true);
+  try{
+    const res = await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg})});
+    if(!res.ok) throw new Error((await res.json()).detail||'Errore');
+    const data = await res.json();
+    typeInto(botEl,data.reply);
+  } catch(e){
+    botEl.textContent = 'Errore: '+e.message;
+  } finally{
+    chatBusy = false;
+    document.getElementById('chat-send').disabled = false;
+  }
+}
+
+function askSuggestion(btn){
+  document.getElementById('chat-input').value = btn.textContent;
+  sendChat();
+}
+
+function appendMsg(text,type,empty=false){
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'msg '+type;
+  if(type==='bot') div.innerHTML = '<div class="msg-header">🏍️ ANCMA AI</div><span class="msg-body"></span>';
+  else div.textContent = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return type==='bot' ? div.querySelector('.msg-body') : div;
+}
+
+function typeInto(el,text){
+  el.textContent = '';
+  el.classList.add('typing-cursor');
+  let i = 0;
+  function tick(){
+    if(i<text.length){el.textContent+=text[i];i++;
+      el.closest('.chat-messages').scrollTop = el.closest('.chat-messages').scrollHeight;
+      setTimeout(tick, 12);
+    } else el.classList.remove('typing-cursor');
+  }
+  tick();
+}
+
+// ── Tooltip ──
+function showTooltip(ev,html){tooltip.style('display','block').html(html);moveTooltip(ev)}
+function moveTooltip(ev){tooltip.style('left',(ev.clientX+14)+'px').style('top',(ev.clientY-10)+'px')}
+function hideTooltip(){tooltip.style('display','none')}
+
+// ── Helpers ──
+function fmt(n){return new Intl.NumberFormat('it-IT').format(n)}
+function calcDelta(c,p){return p===0?0:Math.round((c-p)/p*1000)/10}
+
+// ── Start ──
+init();
+</script>
+</body>
+</html>
