@@ -7,9 +7,9 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0a0b;--surface:#141416;--surface2:#1c1c1f;--border:#2a2a2e;
-  --text:#e4e4e7;--text2:#a1a1aa;--text3:#71717a;
-  --accent:#f97316;--accent2:#fb923c;
+  --bg:#f4f4f5;--surface:#ffffff;--surface2:#f0f0f2;--border:#d4d4d8;
+  --text:#18181b;--text2:#52525b;--text3:#71717a;
+  --accent:#f97316;--accent2:#ea580c;
 }
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);overflow:hidden;height:100vh;width:100vw}
@@ -25,7 +25,7 @@ a{color:var(--accent)}
 /* Sidebar sections */
 .sidebar-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
 .sidebar-header h2{font-size:14px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text2)}
-.sidebar-header .badge{background:var(--accent);color:#000;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px}
+.sidebar-header .badge{background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px}
 .sidebar-section{padding:16px 20px;border-bottom:1px solid var(--border)}
 .sidebar-section h3{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:10px}
 .sidebar-scroll{flex:1;overflow-y:auto}
@@ -46,7 +46,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 .cb-row input{accent-color:var(--accent)}
 .btn{background:var(--surface2);border:1px solid var(--border);color:var(--text2);padding:6px 14px;border-radius:6px;font-size:12px;font-family:inherit;cursor:pointer;transition:all .15s}
 .btn:hover{background:var(--border);color:var(--text)}
-.btn-accent{background:var(--accent);color:#000;border-color:var(--accent);font-weight:600}
+.btn-accent{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
 .btn-accent:hover{background:var(--accent2)}
 
 /* Legend */
@@ -74,7 +74,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 .toggle-right{position:absolute;top:12px;right:12px;z-index:20}
 
 /* Tooltip */
-.tooltip{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-size:12px;max-width:320px;z-index:100;box-shadow:0 8px 32px rgba(0,0,0,.6);opacity:0;transition:opacity .15s}
+.tooltip{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-size:12px;max-width:320px;z-index:100;box-shadow:0 8px 32px rgba(0,0,0,.12);opacity:0;transition:opacity .15s}
 .tooltip.visible{opacity:1}
 .tooltip h4{font-size:14px;font-weight:700;margin-bottom:6px;color:var(--text);line-height:1.3}
 .tooltip-row{display:flex;gap:8px;margin-bottom:3px}
@@ -82,10 +82,10 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 .tooltip-val{color:var(--text)}
 .tooltip-editions{display:flex;gap:4px;margin-top:6px}
 .tooltip-editions span{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:11px;font-weight:600}
-.tooltip-editions span.active{background:var(--accent);color:#000;border-color:var(--accent)}
+.tooltip-editions span.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 
 /* Loading */
-.loading-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg);z-index:50}
+.loading-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(244,244,245,.9);z-index:50}
 .loading-overlay .spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-text{color:var(--text2);margin-top:16px;font-size:13px}
@@ -402,7 +402,7 @@ function draw(){
     if (n === hoveredNode || n === selectedNode){
       ctx.beginPath();
       ctx.arc(n.x, n.y, n.radius, 0, Math.PI*2);
-      ctx.strokeStyle = "#fff";
+      ctx.strokeStyle = "#18181b";
       ctx.lineWidth = 2;
       ctx.globalAlpha = dim ? 0.08 : 1;
       ctx.stroke();
@@ -425,7 +425,7 @@ function draw(){
     ctx.font = `600 ${fontSize}px Inter,system-ui,sans-serif`;
     ctx.textAlign = "center";
     ctx.textBaseline = "bottom";
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = "#18181b";
     ctx.fillText(n.nome.substring(0, 40), n.x, n.y - n.radius - 4);
   }
 
@@ -540,7 +540,7 @@ function showTooltip(n, cx, cy){
     `<span class="${n.edizioni.includes(y)?'active':''}">${y}</span>`
   ).join("");
   const ancmaBadge = n.is_ancma_member
-    ? `<span style="background:#facc15;color:#000;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;margin-left:6px;vertical-align:middle">ANCMA</span>`
+    ? `<span style="background:#ca8a04;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;margin-left:6px;vertical-align:middle">ANCMA</span>`
     : '';
   tooltipEl.innerHTML = `
     <h4>${escHtml(n.nome)}${ancmaBadge}</h4>

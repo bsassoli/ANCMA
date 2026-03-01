@@ -9,19 +9,19 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#080810;--bg-card:#0f0f1a;--bg-hover:#161625;--bg-input:#0a0a14;
-  --border:#1a1a2e;--border-light:#252540;
-  --text:#e8e8f0;--text-dim:#9898b0;--text-muted:#606078;
-  --accent:#f97316;--accent-dim:#ea580c;--accent-glow:rgba(249,115,22,.12);
-  --moto:#6366f1;--scooter:#f97316;--ciclomotori:#10b981;--elettrici:#facc15;
-  --green:#22c55e;--green-dim:rgba(34,197,94,.12);
-  --red:#ef4444;--red-dim:rgba(239,68,68,.12);
+  --bg:#f3f4f6;--bg-card:#ffffff;--bg-hover:#f0f0f5;--bg-input:#f9fafb;
+  --border:#d1d5db;--border-light:#c7c7d0;
+  --text:#111827;--text-dim:#4b5563;--text-muted:#6b7280;
+  --accent:#f97316;--accent-dim:#ea580c;--accent-glow:rgba(249,115,22,.08);
+  --moto:#6366f1;--scooter:#f97316;--ciclomotori:#10b981;--elettrici:#ca8a04;
+  --green:#16a34a;--green-dim:rgba(22,163,74,.10);
+  --red:#dc2626;--red-dim:rgba(220,38,38,.10);
   --radius:12px;--radius-sm:8px;--transition:.2s ease;
 }
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow:hidden;height:100vh}
 .header{display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid var(--border);background:var(--bg-card);height:60px;flex-shrink:0;z-index:100}
 .header-left{display:flex;align-items:center;gap:14px}
-.header-logo{font-size:17px;font-weight:800;background:linear-gradient(135deg,var(--accent),#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header-logo{font-size:17px;font-weight:800;background:linear-gradient(135deg,var(--accent),#b45309);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .header-sep{width:1px;height:22px;background:var(--border-light)}
 .header-sub{font-size:12px;color:var(--text-muted);font-weight:500}
 .header-kpis{display:flex;gap:10px}
@@ -96,7 +96,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-
 .typing-cursor::after{content:'\u2588';animation:blink .7s step-end infinite;color:var(--accent)}
 @keyframes blink{50%{opacity:0}}
 /* Tooltip */
-.d3-tooltip{position:fixed;padding:10px 14px;background:rgba(15,15,26,.95);border:1px solid var(--border-light);border-radius:var(--radius-sm);font-size:12px;color:var(--text);pointer-events:none;z-index:1000;line-height:1.6;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.d3-tooltip{position:fixed;padding:10px 14px;background:rgba(255,255,255,.97);border:1px solid var(--border-light);border-radius:var(--radius-sm);font-size:12px;color:var(--text);pointer-events:none;z-index:1000;line-height:1.6;box-shadow:0 8px 24px rgba(0,0,0,.12)}
 .d3-tooltip .tt-title{font-weight:600;margin-bottom:4px}
 .d3-tooltip .tt-row{display:flex;justify-content:space-between;gap:16px}
 .d3-tooltip .tt-dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px}
@@ -230,7 +230,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-
 let dati = null;
 let annoAttivo = '2025';
 let compareMode = false;
-const COLORS = {moto:'#6366f1',scooter:'#f97316',ciclomotori:'#10b981',elettrici:'#facc15',elettrici_totali:'#facc15'};
+const COLORS = {moto:'#6366f1',scooter:'#f97316',ciclomotori:'#10b981',elettrici:'#ca8a04',elettrici_totali:'#ca8a04'};
 const LABELS = {moto:'Moto',scooter:'Scooter',ciclomotori:'Ciclomotori',elettrici:'Elettrici',elettrici_totali:'Elettrici'};
 const tooltip = d3.select('#tooltip');
 
@@ -514,16 +514,16 @@ function drawElectric(){
   const line = d3.line().x((_,i)=>x(mesi[i])).y(d=>y(d)).curve(d3.curveMonotoneX);
 
   // 2024 area
-  svg.append('path').datum(d24.map(d=>d.elettrici)).attr('fill','rgba(250,204,21,.08)').attr('d',area);
-  svg.append('path').datum(d24.map(d=>d.elettrici)).attr('fill','none').attr('stroke','#facc15').attr('stroke-width',1.5).attr('stroke-dasharray','5,4').attr('opacity',.5).attr('d',line);
+  svg.append('path').datum(d24.map(d=>d.elettrici)).attr('fill','rgba(202,138,4,.08)').attr('d',area);
+  svg.append('path').datum(d24.map(d=>d.elettrici)).attr('fill','none').attr('stroke','#ca8a04').attr('stroke-width',1.5).attr('stroke-dasharray','5,4').attr('opacity',.5).attr('d',line);
 
   // 2025 area
-  svg.append('path').datum(d25.map(d=>d.elettrici)).attr('fill','rgba(250,204,21,.15)').attr('d',area);
-  svg.append('path').datum(d25.map(d=>d.elettrici)).attr('fill','none').attr('stroke','#facc15').attr('stroke-width',2.5).attr('d',line);
+  svg.append('path').datum(d25.map(d=>d.elettrici)).attr('fill','rgba(202,138,4,.12)').attr('d',area);
+  svg.append('path').datum(d25.map(d=>d.elettrici)).attr('fill','none').attr('stroke','#ca8a04').attr('stroke-width',2.5).attr('d',line);
 
-  svg.selectAll('.dot25').data(d25).enter().append('circle').attr('cx',(_,i)=>x(mesi[i])).attr('cy',d=>y(d.elettrici)).attr('r',3.5).attr('fill','#facc15');
+  svg.selectAll('.dot25').data(d25).enter().append('circle').attr('cx',(_,i)=>x(mesi[i])).attr('cy',d=>y(d.elettrici)).attr('r',3.5).attr('fill','#ca8a04');
 
-  document.getElementById('legend-electric').innerHTML = '<div class="legend-item"><div class="legend-dot" style="background:#facc15"></div>2025</div><div class="legend-item"><div class="legend-dot" style="background:#facc15;opacity:.4"></div>2024 (tratteggiato)</div>';
+  document.getElementById('legend-electric').innerHTML = '<div class="legend-item"><div class="legend-dot" style="background:#ca8a04"></div>2025</div><div class="legend-item"><div class="legend-dot" style="background:#ca8a04;opacity:.4"></div>2024 (tratteggiato)</div>';
 }
 
 function drawMiniElectric(){
@@ -544,9 +544,9 @@ function drawMiniElectric(){
   }
 
   const cards = [
-    {label:'Totale Elettrici 2025',val:fmt(tot25),delta,spark:spark(dati.mensili_2025,'#facc15'),color:'#facc15'},
-    {label:'Totale Elettrici 2024',val:fmt(tot24),delta:null,spark:spark(dati.mensili_2024,'#facc15'),color:'#facc15'},
-    {label:'Quota EV su totale 2025',val:(dati.annuali['2025'].elettrici_totali/dati.annuali['2025'].totale*100).toFixed(1)+'%',delta:null,spark:'',color:'#facc15'},
+    {label:'Totale Elettrici 2025',val:fmt(tot25),delta,spark:spark(dati.mensili_2025,'#ca8a04'),color:'#ca8a04'},
+    {label:'Totale Elettrici 2024',val:fmt(tot24),delta:null,spark:spark(dati.mensili_2024,'#ca8a04'),color:'#ca8a04'},
+    {label:'Quota EV su totale 2025',val:(dati.annuali['2025'].elettrici_totali/dati.annuali['2025'].totale*100).toFixed(1)+'%',delta:null,spark:'',color:'#ca8a04'},
   ];
   el.innerHTML = cards.map(c=>`<div class="mini-card">
     <div class="mc-label">${c.label}</div>
